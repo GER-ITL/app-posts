@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+.posts{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.item{
+    font-size: 20px;
+    color: rgb(0, 79, 128);
+    display: flex;
+    margin-bottom: 10px;
+    img{
+        width: 100px;
+        height: 100px;
+        border-radius: 5px;
+    }
+    p{
+        margin: 10px;
+        align-self: flex-end;
+    }
+}
+.span_item{
+align-self: center;
+}

@@ -1,0 +1,14 @@
+@mixin block-item{
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.header{
+    grid-area: head;
+    @include block-item();
+    background: #e6e6fa;
+    grid-column: 1/3;
+    img{
+        width: 50px;
+    }
+}

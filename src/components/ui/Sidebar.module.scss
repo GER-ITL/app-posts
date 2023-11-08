@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+
+@mixin block-item{
+    border-radius: 5px;
+    padding: 10px;
+    box-sizing: border-box;
+    
+}
+
+
+.sidebar{
+    @include block-item();
+    background: #e6e6fa;
+    grid-area: side;
+    display: flex;
+    flex-direction: column;
+    button{
+        background: transparent;
+        border: 1px solid #28282b;
+        border-radius: 5px;
+        outline: none;
+        cursor: pointer;
+        margin: 10px 0;
+        padding: 10px;
+        font-family: 'Montserrat', sans-serif;
+
+    }
+}
