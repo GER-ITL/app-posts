@@ -26,10 +26,19 @@
 .removeBtn{
     @include formBtn();
     background: rgba(255, 0, 0, 0.305);
+    transition: 0.5s all;
+
+}
+.removeBtn:hover{
+    background: rgba(255, 0, 0);
 }
 .sendBtn{
     @include formBtn();
     background: rgba(0, 128, 0, 0.344);
+    transition: 0.5s all;
+}
+.sendBtn:hover{
+    background: rgba(0, 128, 0);
 }
 .addFormBlock textarea{
     width: 100%;
