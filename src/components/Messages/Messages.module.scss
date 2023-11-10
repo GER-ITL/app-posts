@@ -1,0 +1,39 @@
+.dialogs{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+}
+
+.dialog_item{
+  
+    &
+        a{
+        text-decoration: none;
+        color: rgb(41, 41, 42);
+        border: 1px solid rgb(41, 41, 42);
+        padding: 10px;
+        display: flex;
+        text-align: center;
+        margin: 10px 0;
+        border-radius: 5px;
+    }
+
+}
+
+.dialogsItems .active{
+    color: rgb(0, 115, 255);
+    background: #d3d3f3;
+    border: 1px solid rgb(0, 115, 255);
+    border-radius: 5px;
+}
+
+.message{
+    padding: 10px;
+    overflow: auto;
+    display: flex;
+}
+.messages{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows:  repeat(5, minmax(50px, auto));
+}
+

@@ -12,9 +12,10 @@
     @include block-item();
     background: #e6e6fa;
     grid-area: side;
-    display: flex;
-    flex-direction: column;
-    a{
+
+    .item a{
+        display: flex;
+        flex-direction: column;
         background: transparent;
         text-decoration: none;
         text-align: center;
@@ -26,5 +27,13 @@
         padding: 10px;
         font-family: 'Montserrat', sans-serif;
 
+        &.activeLink{
+            color: rgb(0, 115, 255);
+            background: #d3d3f3;
+            border: 1px solid rgb(0, 115, 255);
+        }
+
     }
+    
 }
+

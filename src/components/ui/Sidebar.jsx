@@ -1,14 +1,26 @@
-import styles from './Sidebar.module.scss'
-
+import { NavLink } from 'react-router-dom'
+import  './Sidebar.scss'
+// const setActive1 = ({isActive})=>({border: isActive ? '1px solid red' : ''})
+const setActive = ({isActive})=> isActive ? 'activeLink' : ''
 const Sidebar = () => {
 
   return (
-    <div className={styles.sidebar}>
-        <a href="/profile">Profile</a>
-        <a href="/messages">Messages</a>
-        <a href="/news">News</a>
-        <a href="/music">Music</a>
-        <a href="/settings">Settings</a>
+    <div className= 'sidebar'>
+        <div className='item'>
+          <NavLink to ="/profile" className={setActive} >Profile</NavLink>
+        </div>
+          <div className='item'>
+           <NavLink to ="/messages"className={setActive} >Messages</NavLink>
+         </div>
+         <div className='item'>
+           <NavLink to ="/news" className={setActive} >News</NavLink>
+         </div>
+        <div className='item'>
+           <NavLink to ="/music" className={setActive} >Music</NavLink>
+         </div>
+     <div className='item'>
+           <NavLink to ="/settings" className={setActive} >Settings</NavLink>
+         </div>
     </div>
   )
 }
