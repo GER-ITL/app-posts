@@ -3,7 +3,8 @@ import "./../../styles/App.scss";
 import Posts from "./Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
-const Profile = () => {
+const Profile = (props) => {
+
   return (
     <div className="profile">
       {/* <img
@@ -11,7 +12,7 @@ const Profile = () => {
         alt=""
       /> */}
       <ProfileInfo/>
-      <Posts />
+      <Posts postsData = {props.state.postsData}/>
     </div>
   );
 };

@@ -1,0 +1,23 @@
+.listFriends{
+    list-style-type:decimal;
+    font-size: 20px;
+    line-height: 50px;
+
+}
+.ulItem{
+    margin-left: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.liItem{
+    img{
+        width: 100px;
+        height: auto;
+        border-radius: 50%;
+        box-shadow: 0 0 20px rgb(46, 46, 45);
+    }
+    margin-top: 5px;
+    padding-left: 10px;
+    padding-top: 10px;
+    border-bottom: 1px solid rgb(46, 46, 45);
+}

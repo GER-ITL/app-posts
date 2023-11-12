@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Post.module.scss";
 const Post = (props) => {
+  const [likes, setLikes] = useState(props.count);
+  const changeLikes = () =>{
+    setLikes(likes + 1)
+  }
   return (
     <div className={styles.item}>
       <img
@@ -10,7 +14,7 @@ const Post = (props) => {
       <p>{props.mess}</p>
 
       <div className={styles.span_item}>
-        <span>likes: {props.count}</span>
+        <span  onClick={changeLikes}>&#128077;{likes}</span>
       </div>
     </div>
   );

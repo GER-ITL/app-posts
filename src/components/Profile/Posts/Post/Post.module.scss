@@ -22,4 +22,17 @@
 }
 .span_item {
   align-self: center;
+  span{
+    padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+    transition: 0.25s all;
+
+  }
+  span:active{
+    background: #ff2d2d87;
+    box-shadow: 0 0 20px #ff2d2d87;
+  }
+
 }
