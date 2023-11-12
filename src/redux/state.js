@@ -15,6 +15,15 @@ let state = {
         },
         
     ],
+    profileData:[
+      {
+        name: 'Dante R.',
+        dataBirth: '8 january',
+        citi: 'Moscow',
+        education: "BSU'11",
+        img: 'https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg',
+      }
+    ]
     },
     messagesPage:{
       dialogsData: [

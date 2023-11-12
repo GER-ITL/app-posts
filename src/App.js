@@ -14,7 +14,7 @@ function App(props) {
     <BrowserRouter>
       <div className="content">
         <Header />
-        <Sidebar state={props.state.friendsPage}/>
+        <Sidebar state={props.state.friendsPage} />
         <div className="content-wrapper">
           <Routes>
             <Route
@@ -28,7 +28,10 @@ function App(props) {
             <Route path="/news" element={<News />} />
             <Route path="/music" element={<Music />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/friends" element={<Friends  state={props.state.friendsPage}/>} />
+            <Route
+              path="/friends"
+              element={<Friends state={props.state.friendsPage} />}
+            />
           </Routes>
         </div>
       </div>
