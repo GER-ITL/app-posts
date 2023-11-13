@@ -3,7 +3,6 @@ import styles from "./Messages.module.scss";
 import Message from "./Message/Message";
 import Dialogs from "./Dialogs/Dialogs";
 
-
 const Messages = (props) => {
   return (
     <div>
@@ -21,6 +20,10 @@ const Messages = (props) => {
             return <Message message={mess.message} key={mess.id} />;
           })}
         </div>
+      </div>
+      <div className={styles.sendForm}>
+        <button>Send</button>
+        <textarea placeholder="your mess..."></textarea>
       </div>
     </div>
   );

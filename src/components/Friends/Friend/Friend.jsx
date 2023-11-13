@@ -5,8 +5,9 @@ const Friend = (props) => {
   return (
     <div className={classes.liItem}>
       <img src={props.img} alt="" />
-      <li className={classes.listFriends}>{props.name}</li>
-      <div>{props.info}</div>
+      <li className={classes.listFriends}>
+        {props.name} <span>{props.status}</span>
+      </li>
     </div>
   );
 };
