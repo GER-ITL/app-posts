@@ -1,3 +1,5 @@
+import { reranderEntireTree } from "../render";
+
 let state = {
   profilePage: {
     postsData: [
@@ -109,4 +111,22 @@ let state = {
     ]
   }
 };
+
+export let addPost = (messPost) =>{
+  let newPost = {
+    id: 6,
+    img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
+    mess: messPost,
+    count: 0
+  }
+  state.profilePage.postsData.push(newPost)
+  reranderEntireTree(state)
+
+}
+export let removePost = () =>{
+
+  state.profilePage.postsData.pop()
+  reranderEntireTree(state)
+
+}
 export default state;

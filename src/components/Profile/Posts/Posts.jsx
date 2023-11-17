@@ -1,22 +1,30 @@
-import React, { useState } from "react";
 import styles from "./Posts.module.scss";
 import Post from "./Post/Post";
+import React from "react";
 
 const Posts = (props) => {
-  const [posts, setPosts] = useState(props.postsData);
+  let newPostElement = React.createRef()
   const addPostHandler = () => {
-    setPosts(posts);
-  };
+    if (newPostElement.current.value !== '' ){
+      let text = newPostElement.current.value
+      newPostElement.current.value = ''
+      props.addPost(text)
+    }
+
+    }
+    const removePost = ()=>{
+      props.removePost ()   
+    }
   return (
     <div>
       <h1> My Posts</h1>
-      <div className={styles.addFormBlock}>
-        <textarea placeholder="your news..."></textarea>
+      <div className={styles.addFormBlock}>  
+        <textarea ref={newPostElement} placeholder="your news..."></textarea>
         <div>
           <button onClick={addPostHandler} className={styles.sendBtn}>
             Send
           </button>
-          <button className={styles.removeBtn}>Remove</button>
+          <button onClick={removePost} className={styles.removeBtn}>Remove</button>
         </div>
       </div>
       <div className={styles.posts}>

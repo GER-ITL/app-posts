@@ -11,7 +11,7 @@ const Profile = (props) => {
         alt=""
       /> */}
       <ProfileInfo profileData={props.state.profileData} />
-      <Posts postsData={props.state.postsData} />
+      <Posts postsData={props.state.postsData} addPost = {props.addPost} removePost= {props.removePost}/>
     </div>
   );
 };
