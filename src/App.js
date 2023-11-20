@@ -18,7 +18,14 @@ function App(props) {
         <Routes>
           <Route
             path="/profile"
-            element={<Profile state={props.state.profilePage} addPost = {props.addPost} removePost = {props.removePost}/>}
+            element={
+              <Profile
+                profilePage={props.state.profilePage}
+                addPost={props.addPost}
+                removePost={props.removePost}
+                updateNewPostText = {props.updateNewPostText}
+              />
+            }
           />
           <Route
             path="/messages"

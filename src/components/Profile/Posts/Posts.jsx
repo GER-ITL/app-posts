@@ -3,28 +3,36 @@ import Post from "./Post/Post";
 import React from "react";
 
 const Posts = (props) => {
-  let newPostElement = React.createRef()
+  let newPostElement = React.createRef();
   const addPostHandler = () => {
-    if (newPostElement.current.value !== '' ){
-      let text = newPostElement.current.value
-      newPostElement.current.value = ''
-      props.addPost(text)
+    if (newPostElement.current.value !== "") {
+      props.addPost();
     }
-
-    }
-    const removePost = ()=>{
-      props.removePost ()   
-    }
+  };
+  const removePost = () => {
+    props.removePost();
+  };
+  let onPostChange = () => {
+    let text = newPostElement.current.value;
+    props.updateNewPostText(text)
+  };
   return (
     <div>
       <h1> My Posts</h1>
-      <div className={styles.addFormBlock}>  
-        <textarea ref={newPostElement} placeholder="your news..."></textarea>
+      <div className={styles.addFormBlock}>
+        <textarea
+          onChange={onPostChange}
+          value={props.newPostText}
+          ref={newPostElement}
+          placeholder="your news..."
+        ></textarea>
         <div>
           <button onClick={addPostHandler} className={styles.sendBtn}>
             Send
           </button>
-          <button onClick={removePost} className={styles.removeBtn}>Remove</button>
+          <button onClick={removePost} className={styles.removeBtn}>
+            Remove
+          </button>
         </div>
       </div>
       <div className={styles.posts}>

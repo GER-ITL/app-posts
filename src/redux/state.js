@@ -25,6 +25,7 @@ let state = {
         img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
       },
     ],
+    newPostText: ''
   },
   messagesPage: {
     dialogsData: [
@@ -112,17 +113,26 @@ let state = {
   }
 };
 
-export let addPost = (messPost) =>{
+export let addPost = () =>{
   let newPost = {
     id: 6,
     img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-    mess: messPost,
+    mess: state.profilePage.newPostText,
     count: 0
   }
   state.profilePage.postsData.push(newPost)
+  state.profilePage.newPostText=''
   reranderEntireTree(state)
 
 }
+
+export let updateNewPostText = (messPost) =>{
+
+  state.profilePage.newPostText = messPost
+  reranderEntireTree(state)
+
+}
+
 export let removePost = () =>{
 
   state.profilePage.postsData.pop()
