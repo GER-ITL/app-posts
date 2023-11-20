@@ -1,4 +1,6 @@
-import { reranderEntireTree } from "../render";
+let reranderEntireTree = () => {
+  console.log("State change");
+};
 
 let state = {
   profilePage: {
@@ -25,7 +27,7 @@ let state = {
         img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
       },
     ],
-    newPostText: ''
+    newPostText: "",
   },
   messagesPage: {
     dialogsData: [
@@ -99,44 +101,40 @@ let state = {
         img: "https://sunmag.me/wp-content/uploads/2019/11/sunmag-001-small-avatar.png",
         status: "online",
       },
-      
     ],
   },
-  newsPage:{
+  newsPage: {
     news: [
-      {id: 1, label:'news 1'},
-      {id: 2, label:'news 2'},
-      {id: 3, label:'news 3'},
-      {id: 4, label:'news 4'},
-    
-    ]
-  }
+      { id: 1, label: "news 1" },
+      { id: 2, label: "news 2" },
+      { id: 3, label: "news 3" },
+      { id: 4, label: "news 4" },
+    ],
+  },
 };
 
-export let addPost = () =>{
+export const addPost = () => {
   let newPost = {
     id: 6,
     img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
     mess: state.profilePage.newPostText,
-    count: 0
-  }
-  state.profilePage.postsData.push(newPost)
-  state.profilePage.newPostText=''
-  reranderEntireTree(state)
+    count: 0,
+  };
+  state.profilePage.postsData.push(newPost);
+  state.profilePage.newPostText = "";
+  reranderEntireTree(state);
+};
 
-}
+export const updateNewPostText = (messPost) => {
+  state.profilePage.newPostText = messPost;
+  reranderEntireTree(state);
+};
 
-export let updateNewPostText = (messPost) =>{
-
-  state.profilePage.newPostText = messPost
-  reranderEntireTree(state)
-
-}
-
-export let removePost = () =>{
-
-  state.profilePage.postsData.pop()
-  reranderEntireTree(state)
-
-}
+export const removePost = () => {
+  state.profilePage.postsData.pop();
+  reranderEntireTree(state);
+};
+export const subscribe = (observer) => {
+  reranderEntireTree = observer;
+};
 export default state;
