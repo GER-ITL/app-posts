@@ -115,26 +115,26 @@ let store = {
   _reranderEntireTree() {
     console.log("State change");
   },
-  addPost() {
-    let newPost = {
-      id: 6,
-      img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-      mess: this._state.profilePage.newPostText,
-      count: 0,
-    };
-    this._state.profilePage.postsData.push(newPost);
-    this._state.profilePage.newPostText = "";
-    this._reranderEntireTree(this._state);
-  },
-
-  updateNewPostText(messPost) {
-    this._state.profilePage.newPostText = messPost;
-    this._reranderEntireTree(this._state);
-  },
-
-  removePost() {
-    this._state.profilePage.postsData.pop();
-    this._reranderEntireTree(this._state);
+  dispatch(action){
+    if (action.type === 'ADD-POST'){
+      let newPost = {
+        id: 6,
+        img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
+        mess: this._state.profilePage.newPostText,
+        count: 0,
+      };
+      this._state.profilePage.postsData.push(newPost);
+      this._state.profilePage.newPostText = "";
+      this._reranderEntireTree(this._state);
+    }
+    else if(action.type === 'UPDATE-NEW-POST-TEXT'){
+      this._state.profilePage.newPostText = action.messPost;
+      this._reranderEntireTree(this._state);
+    }
+    else if(action.type === 'REMOVE-POST'){
+      this._state.profilePage.postsData.pop();
+      this._reranderEntireTree(this._state);
+    }
   },
   subscribe(observer) {
     this._reranderEntireTree = observer;

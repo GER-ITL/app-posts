@@ -1,8 +1,8 @@
 import React from 'react'
 
-const New = (props) => {
+const New = ({label}) => {
   return (
-    <div>{props.label}</div>
+    <div>{label}</div>
   )
 }
 

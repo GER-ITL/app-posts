@@ -9,34 +9,35 @@ import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
 
-function App(props) {
+function App({ state,  dispatch }) {
+
+  const { friendsPage, profilePage, messagesPage, newsPage } = state
+
   return (
     <div className="content">
       <Header />
-      <Sidebar state={props.state.friendsPage} />
+      <Sidebar state={friendsPage} />
       <div className="content-wrapper">
         <Routes>
           <Route
             path="/profile"
             element={
               <Profile
-                profilePage={props.state.profilePage}
-                addPost={props.addPost}
-                removePost={props.removePost}
-                updateNewPostText = {props.updateNewPostText}
+                profilePage={profilePage}
+                dispatch={dispatch}
               />
             }
           />
           <Route
             path="/messages"
-            element={<Messages state={props.state.messagesPage} />}
+            element={<Messages state={messagesPage} />}
           />
-          <Route path="/news" element={<News state={props.state.newsPage} />} />
+          <Route path="/news" element={<News state={newsPage} />} />
           <Route path="/music" element={<Music />} />
           <Route path="/settings" element={<Settings />} />
           <Route
             path="/friends"
-            element={<Friends state={props.state.friendsPage} />}
+            element={<Friends friendsPage={friendsPage} />}
           />
         </Routes>
       </div>

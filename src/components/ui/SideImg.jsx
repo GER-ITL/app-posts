@@ -1,10 +1,11 @@
 import React from 'react'
 
-const SideImg = (props) => {
+const SideImg = ({state}) => {
+  const {friends} = state
   return (
     <div>
-          {props.state.friends.map((friend) => {
-        return <img src={friend.img} alt="" />;
+          {friends.map(({img}) => {
+        return <img src={img} alt="" />;
       })}
     </div>
   )

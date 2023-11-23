@@ -1,13 +1,13 @@
 import React from "react";
 import Friend from "./Friend/Friend";
 import classes from './Friend.module.scss'
-const Friends = (props) => {
+const Friends = ({friendsPage}) => {
   return (
     <div>
       <h1>Friends</h1>
       <ul className={classes.ulItem}>
-      {props.state.friends.map((friend) => {
-        return <Friend key={friend.id} name={friend.name} img={friend.img} status ={friend.status}/>;
+      {friendsPage.friends.map(({ id, name, img, status}) => {
+        return <Friend key={id} name={name} img={img} status ={status}/>;
       })}
       </ul>
     </div>

@@ -6,15 +6,15 @@ const Posts = (props) => {
   let newPostElement = React.createRef();
   const addPostHandler = () => {
     if (newPostElement.current.value !== "") {
-      props.addPost();
+      props.dispatch({type:'ADD-POST'});
     }
   };
   const removePost = () => {
-    props.removePost();
+    props.dispatch({type:'REMOVE-POST'});
   };
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    props.updateNewPostText(text)
+    props.dispatch({type:'UPDATE-NEW-POST-TEXT', messPost:text});
   };
   return (
     <div>
