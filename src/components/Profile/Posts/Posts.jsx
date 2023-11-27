@@ -1,20 +1,23 @@
 import styles from "./Posts.module.scss";
 import Post from "./Post/Post";
 import React from "react";
+import { addPostActionCreator, removePostActionCreator, updateNewPostTextActionCreator } from "../../../redux/state";
 
-const Posts = (props) => {
+
+const Posts = ({postsData, newPostText, dispatch}) => {
   let newPostElement = React.createRef();
   const addPostHandler = () => {
     if (newPostElement.current.value !== "") {
-      props.dispatch({type:'ADD-POST'});
+      dispatch(addPostActionCreator());
     }
   };
   const removePost = () => {
-    props.dispatch({type:'REMOVE-POST'});
+    dispatch(removePostActionCreator());
   };
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    props.dispatch({type:'UPDATE-NEW-POST-TEXT', messPost:text});
+    let action = updateNewPostTextActionCreator(text)
+    dispatch(action);
   };
   return (
     <div>
@@ -22,7 +25,7 @@ const Posts = (props) => {
       <div className={styles.addFormBlock}>
         <textarea
           onChange={onPostChange}
-          value={props.newPostText}
+          value={newPostText}
           ref={newPostElement}
           placeholder="your news..."
         ></textarea>
@@ -36,7 +39,7 @@ const Posts = (props) => {
         </div>
       </div>
       <div className={styles.posts}>
-        {props.postsData.map((post) => {
+        {postsData.map((post) => {
           return (
             <Post
               key={post.id}

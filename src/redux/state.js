@@ -1,3 +1,8 @@
+const ADD_POST = 'ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
+const REMOVE_POST = 'REMOVE-POST'
+
+
 let store = {
   _state: {
     profilePage: {
@@ -116,7 +121,7 @@ let store = {
     console.log("State change");
   },
   dispatch(action){
-    if (action.type === 'ADD-POST'){
+    if (action.type === ADD_POST){
       let newPost = {
         id: 6,
         img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
@@ -127,11 +132,11 @@ let store = {
       this._state.profilePage.newPostText = "";
       this._reranderEntireTree(this._state);
     }
-    else if(action.type === 'UPDATE-NEW-POST-TEXT'){
+    else if(action.type === UPDATE_NEW_POST_TEXT){
       this._state.profilePage.newPostText = action.messPost;
       this._reranderEntireTree(this._state);
     }
-    else if(action.type === 'REMOVE-POST'){
+    else if(action.type === REMOVE_POST){
       this._state.profilePage.postsData.pop();
       this._reranderEntireTree(this._state);
     }
@@ -140,5 +145,21 @@ let store = {
     this._reranderEntireTree = observer;
   },
 };
+export const addPostActionCreator =()=>{
+  return{
+    type: ADD_POST
+  }
+}
+export const updateNewPostTextActionCreator =(text)=>{
+  return{
+    type:UPDATE_NEW_POST_TEXT,
+    messPost:text
+  }
+}
+export const removePostActionCreator =()=>{
+  return{
+    type: REMOVE_POST
+  }
+}
 
 export default store;
