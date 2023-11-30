@@ -9,9 +9,9 @@ import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
 import Friends from "./components/Friends/Friends";
 
-function App({ state,  dispatch }) {
+function App({ state,  dispatch, store }) {
 
-  const { friendsPage, profilePage, messagesPage, newsPage } = state
+  const { friendsPage, profilePage,  newsPage } = state
 
   return (
     <div className="content">
@@ -24,13 +24,13 @@ function App({ state,  dispatch }) {
             element={
               <Profile
                 profilePage={profilePage}
-                dispatch={dispatch}
+                dispatch={dispatch} 
               />
             }
           />
           <Route
             path="/messages"
-            element={<Messages state={messagesPage} />}
+            element={<Messages  store = {store} />}
           />
           <Route path="/news" element={<News state={newsPage} />} />
           <Route path="/music" element={<Music />} />

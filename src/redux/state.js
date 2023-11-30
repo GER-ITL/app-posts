@@ -2,6 +2,8 @@ const ADD_POST = 'ADD-POST'
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
 const REMOVE_POST = 'REMOVE-POST'
 
+const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
+const SEND_MESSAGE = 'SEND-MESSAGE'
 
 let store = {
   _state: {
@@ -57,25 +59,31 @@ let store = {
       messagesData: [
         {
           id: 1,
+          name: 'Dante',
           message: "mess 1",
         },
         {
           id: 2,
+          name: 'Dante',
           message: "mess 2",
         },
         {
           id: 3,
+          name: 'Dante',
           message: "mess 3",
         },
         {
           id: 4,
+          name: 'Dante',
           message: "mess 4",
         },
         {
           id: 5,
+          name: 'Dante',
           message: "mess 5",
         },
       ],
+      newMessageBody: ''
     },
     friendsPage: {
       friends: [
@@ -140,6 +148,16 @@ let store = {
       this._state.profilePage.postsData.pop();
       this._reranderEntireTree(this._state);
     }
+    else if (action.type === UPDATE_NEW_MESSAGE_BODY){
+      this._state.messagesPage.newMessageBody = action.body
+      this._reranderEntireTree(this._state);
+    }
+    else if (action.type === SEND_MESSAGE){
+      let body = this._state.messagesPage.newMessageBody
+      this._state.messagesPage.newMessageBody = ''
+      this._state.messagesPage.messagesData.push({id: 6 ,name:'Dante', message: body})
+      this._reranderEntireTree(this._state);
+    }
   },
   subscribe(observer) {
     this._reranderEntireTree = observer;
@@ -161,5 +179,8 @@ export const removePostActionCreator =()=>{
     type: REMOVE_POST
   }
 }
+export const sendMessageCreator =()=> ({type: SEND_MESSAGE})
+export const updateNewMessageBodyCreator =(body)=>
+   ({type:UPDATE_NEW_MESSAGE_BODY, body:body}) 
 
 export default store;
