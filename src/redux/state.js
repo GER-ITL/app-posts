@@ -1,9 +1,7 @@
-const ADD_POST = 'ADD-POST'
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT'
-const REMOVE_POST = 'REMOVE-POST'
+import messagesReducer from "./reducers/messages-reducer"
+import profileReducer from "./reducers/profile-reducer"
+import sidebarReducer from "./reducers/sideber-reducer"
 
-const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY'
-const SEND_MESSAGE = 'SEND-MESSAGE'
 
 let store = {
   _state: {
@@ -129,58 +127,17 @@ let store = {
     console.log("State change");
   },
   dispatch(action){
-    if (action.type === ADD_POST){
-      let newPost = {
-        id: 6,
-        img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-        mess: this._state.profilePage.newPostText,
-        count: 0,
-      };
-      this._state.profilePage.postsData.push(newPost);
-      this._state.profilePage.newPostText = "";
-      this._reranderEntireTree(this._state);
-    }
-    else if(action.type === UPDATE_NEW_POST_TEXT){
-      this._state.profilePage.newPostText = action.messPost;
-      this._reranderEntireTree(this._state);
-    }
-    else if(action.type === REMOVE_POST){
-      this._state.profilePage.postsData.pop();
-      this._reranderEntireTree(this._state);
-    }
-    else if (action.type === UPDATE_NEW_MESSAGE_BODY){
-      this._state.messagesPage.newMessageBody = action.body
-      this._reranderEntireTree(this._state);
-    }
-    else if (action.type === SEND_MESSAGE){
-      let body = this._state.messagesPage.newMessageBody
-      this._state.messagesPage.newMessageBody = ''
-      this._state.messagesPage.messagesData.push({id: 6 ,name:'Dante', message: body})
-      this._reranderEntireTree(this._state);
-    }
+
+    this._state.profilePage = profileReducer(this._state.profilePage, action)
+    this._state.messagesPage = messagesReducer(this._state.messagesPage, action)
+    this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+
+    this._reranderEntireTree(this._state);
+
   },
   subscribe(observer) {
     this._reranderEntireTree = observer;
   },
 };
-export const addPostActionCreator =()=>{
-  return{
-    type: ADD_POST
-  }
-}
-export const updateNewPostTextActionCreator =(text)=>{
-  return{
-    type:UPDATE_NEW_POST_TEXT,
-    messPost:text
-  }
-}
-export const removePostActionCreator =()=>{
-  return{
-    type: REMOVE_POST
-  }
-}
-export const sendMessageCreator =()=> ({type: SEND_MESSAGE})
-export const updateNewMessageBodyCreator =(body)=>
-   ({type:UPDATE_NEW_MESSAGE_BODY, body:body}) 
 
 export default store;

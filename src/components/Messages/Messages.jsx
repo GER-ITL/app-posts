@@ -5,13 +5,14 @@ import Dialogs from "./Dialogs/Dialogs";
 import {
   sendMessageCreator,
   updateNewMessageBodyCreator,
-} from "../../redux/state";
+} from "../../redux/reducers/messages-reducer";
 
 const Messages = ({ store }) => {
   const { messagesPage } = store.getState();
 
   let newMessageBody = messagesPage.newMessageBody;
   const onSendMessageClick = () => {
+    if (newMessageBody !== '')
     store.dispatch(sendMessageCreator());
   };
   const onNewMassageChange = (e) => {
