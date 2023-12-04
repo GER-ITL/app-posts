@@ -27,26 +27,31 @@ let initialState =  {
   messagesData: [
     {
       id: 1,
+      img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
       name: 'Dante',
       message: "mess 1",
     },
     {
       id: 2,
+      img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
       name: 'Dante',
       message: "mess 2",
     },
     {
       id: 3,
+      img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
       name: 'Dante',
       message: "mess 3",
     },
     {
       id: 4,
+      img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
       name: 'Dante',
       message: "mess 4",
     },
     {
       id: 5,
+      img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
       name: 'Dante',
       message: "mess 5",
     },
@@ -62,7 +67,7 @@ const messagesReducer = (state = initialState, action) => {
     case SEND_MESSAGE:
       let body = state.newMessageBody;
       state.newMessageBody = "";
-      state.messagesData.push({ id: 6, name: "Dante", message: body });
+      state.messagesData.push({ id: 6,img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg", name: "Dante", message: body });
       return state;
     default:
       return state;

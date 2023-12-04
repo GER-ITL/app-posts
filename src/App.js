@@ -11,7 +11,7 @@ import Friends from "./components/Friends/Friends";
 
 function App({ state,  dispatch, store }) {
 
-  const { friendsPage, profilePage,  newsPage , musicPage } = state
+  const { friendsPage, profilePage,  newsPage  } = state
 
   return (
     <div className="content">
@@ -33,7 +33,7 @@ function App({ state,  dispatch, store }) {
             element={<Messages  store = {store} />}
           />
           <Route path="/news" element={<News state={newsPage} />} />
-          <Route path="/music" element={<Music state = {musicPage}/>} />
+          <Route path="/music" element={<Music store = {store}/>} />
           <Route path="/settings" element={<Settings />} />
           <Route
             path="/friends"

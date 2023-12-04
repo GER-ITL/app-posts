@@ -32,7 +32,7 @@ const Messages = ({ store }) => {
         </div>
         <div className={styles.messages}>
           {messagesPage.messagesData.map((mess) => {
-            return <Message name = {mess.name} message={mess.message} key={mess.id} />;
+            return <Message name = {mess.name}  img = {mess.img} message={mess.message} key={mess.id} />;
           })}
         </div>
       </div>
