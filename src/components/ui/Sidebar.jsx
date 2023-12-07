@@ -2,7 +2,7 @@ import { NavLink } from 'react-router-dom'
 import  './Sidebar.scss'
 // const setActive1 = ({isActive})=>({border: isActive ? '1px solid red' : ''})
 const setActive = ({isActive})=> isActive ? 'activeLink' : ''
-const Sidebar = (props) => {
+const Sidebar = () => {
 
   return (
     <div className= 'sidebar'>

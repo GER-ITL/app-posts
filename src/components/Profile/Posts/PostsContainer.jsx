@@ -1,32 +1,35 @@
-import React from "react";
 import {
   addPostActionCreator,
   removePostActionCreator,
   updateNewPostTextActionCreator,
 } from "../../../redux/reducers/profile-reducer";
 import Posts from "./Posts";
+import { connect } from "react-redux";
 
-const PostsContainer = ({ store }) => {
-  let state = store.getState();
-  const addPostHandler = () => {
-    store.dispatch(addPostActionCreator());
-  };
-  const removePostHandler = () => {
-    store.dispatch(removePostActionCreator());
-  };
-  let onPostChangeHandler = (text) => {
-    let action = updateNewPostTextActionCreator(text);
-    store.dispatch(action);
-  };
-  return (
-    <Posts
-      postsData={state.profilePage.postsData}
-      newPostElement={state.profilePage.newPostElement}
-      newPostText={state.profilePage.newPostText}
-      addPostHandler={addPostHandler}
-      removePostHandler={removePostHandler}
-      updateNewPostText={onPostChangeHandler}
-    />
-  );
-};
+
+
+let mapStateToProps = (state)=>{
+  return{
+    postsData: state.profilePage.postsData,
+    newPostElement: state.profilePage.newPostElement,
+    newPostText: state.profilePage.newPostText,
+  }
+}
+let mapDispatchToProps = (dispatch)=>{
+  return{
+    addPostHandler: () => {
+      dispatch(addPostActionCreator());
+    },
+    removePostHandler: () => {
+      dispatch(removePostActionCreator());
+    },
+    updateNewPostText: (text) => {
+      let action = updateNewPostTextActionCreator(text);
+      dispatch(action);
+    },
+  }
+}
+
+const PostsContainer = connect(mapStateToProps, mapDispatchToProps)(Posts)
+
 export default PostsContainer;

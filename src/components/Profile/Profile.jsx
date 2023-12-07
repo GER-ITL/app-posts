@@ -1,11 +1,10 @@
 import React from "react";
 import "./../../styles/App.scss";
-import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import PostsContainer from "./Posts/PostsContainer";
+import ProfileInfoContainer from "./ProfileInfo/ProfileInfoContainer";
 
-const Profile = ({ store }) => {
-  const {profilePage} = store.getState()
-  const {  profileData } = profilePage;
+const Profile = () => {
+ 
 
   return (
     <div className="profile">
@@ -13,8 +12,8 @@ const Profile = ({ store }) => {
         src="https://www.pixground.com/wp-content/uploads/2023/04/Clouds-Meet-The-Sea-AI-Generated-4K-Wallpaper-jpg.webp"
         alt=""
       /> */}
-      <ProfileInfo profileData={profileData} />
-      <PostsContainer store = {store}/>
+      <ProfileInfoContainer />
+      <PostsContainer />
     </div>
   );
 };

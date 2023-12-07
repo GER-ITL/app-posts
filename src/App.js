@@ -1,32 +1,29 @@
 import Header from "./components/ui/Header";
 import Sidebar from "./components/ui/Sidebar";
 import "./styles/App.scss";
-import MessagesContainer from './components/Messages/MessagesContainer'
+import MessagesContainer from "./components/Messages/MessagesContainer";
 import { Route, Routes } from "react-router-dom";
 import Profile from "./components/Profile/Profile";
-import Music from "./components/Music/Music";
-import News from "./components/News/News";
 import Settings from "./components/Settings/Settings";
-import Friends from "./components/Friends/Friends";
+import FriendsContainer from "./components/Friends/FriendsContainer";
+import NewsContainer from "./components/News/NewsContainer";
+import MusicContainer from "./components/Music/MusicContainer";
 
-function App({ store }) {
-  const { friendsPage, newsPage } = store.getState()
+function App() {
+  // const { friendsPage, newsPage } = store.getState()
 
   return (
     <div className="content">
       <Header />
-      <Sidebar state={friendsPage} />
+      <Sidebar />
       <div className="content-wrapper">
         <Routes>
-          <Route path="/profile" element={<Profile store={store} />} />
-          <Route path="/messages" element={<MessagesContainer store={store} />} />
-          <Route path="/news" element={<News state={newsPage} />} />
-          <Route path="/music" element={<Music store={store} />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/messages" element={<MessagesContainer />} />
+          <Route path="/news" element={<NewsContainer />} />
+          <Route path="/music" element={<MusicContainer />} />
           <Route path="/settings" element={<Settings />} />
-          <Route
-            path="/friends"
-            element={<Friends friendsPage={friendsPage} />}
-          />
+          <Route path="/friends" element={<FriendsContainer />} />
         </Routes>
       </div>
     </div>

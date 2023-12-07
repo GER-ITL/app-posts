@@ -1,16 +1,14 @@
 import React from 'react'
 import ItemMusic from './ItemMusic/ItemMusic'
-import { searchMusicCreator, updateNewMusicBodyCreator } from '../../redux/reducers/music-reducer'
 
-const Music = ({store}) => {
-  const {musicPage} = store.getState()
+const Music = ({musicPage,onSearchClick, onUpdateSearch }) => {
   let newIteMusicBody = musicPage.newIteMusicBody
-  const onSearchClick = ()=>{
-    store.dispatch(searchMusicCreator())
+  const onSearch = ()=>{
+    onSearchClick()
   }
-  const onUpdateSearch = (e)=>{
+  const onUpdate = (e)=>{
     let body = e.target.value
-    store.dispatch(updateNewMusicBodyCreator(body))
+    onUpdateSearch(body)
   }
   return (
     <div className='music'>
@@ -18,8 +16,8 @@ const Music = ({store}) => {
       {musicPage.musicData.map((musicItem)=>{
          return <ItemMusic key = {musicItem.id} label = {musicItem.label} time = {musicItem.time}/>
       })} 
-      <button onClick={onSearchClick}>Search</button>
-      <input value={newIteMusicBody} onChange={onUpdateSearch} placeholder='enter label..'></input>
+      <button onClick={onSearch}>Search</button>
+      <input value={newIteMusicBody} onChange={onUpdate} placeholder='enter label..'></input>
     </div>
   )
 }
