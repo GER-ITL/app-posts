@@ -1,36 +1,39 @@
 import styles from "./Posts.module.scss";
 import Post from "./Post/Post";
 import React from "react";
-import { addPostActionCreator, removePostActionCreator, updateNewPostTextActionCreator } from "../../../redux/reducers/profile-reducer";
 
-
-const Posts = ({postsData, newPostText, dispatch}) => {
+const Posts = ({
+  postsData,
+  newPostText,
+  updateNewPostText,
+  addPostHandler,
+  removePostHandler,
+}) => {
   let newPostElement = React.createRef();
-  const addPostHandler = () => {
+  const addPost = () => {
     if (newPostElement.current.value !== "") {
-      dispatch(addPostActionCreator());
+      addPostHandler();
     }
   };
   const removePost = () => {
-    dispatch(removePostActionCreator());
+    removePostHandler();
   };
-  let onPostChange = () => {
+  let onPostChangeHandler = () => {
     let text = newPostElement.current.value;
-    let action = updateNewPostTextActionCreator(text)
-    dispatch(action);
+    updateNewPostText(text);
   };
   return (
     <div>
       <h1> My Posts</h1>
       <div className={styles.addFormBlock}>
         <textarea
-          onChange={onPostChange}
+          onChange={onPostChangeHandler}
           value={newPostText}
           ref={newPostElement}
           placeholder="your news..."
         ></textarea>
         <div>
-          <button onClick={addPostHandler} className={styles.sendBtn}>
+          <button onClick={addPost} className={styles.sendBtn}>
             Send
           </button>
           <button onClick={removePost} className={styles.removeBtn}>

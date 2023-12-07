@@ -2,22 +2,16 @@ import React from "react";
 import styles from "./Messages.module.scss";
 import Message from "./Message/Message";
 import Dialogs from "./Dialogs/Dialogs";
-import {
-  sendMessageCreator,
-  updateNewMessageBodyCreator,
-} from "../../redux/reducers/messages-reducer";
 
-const Messages = ({ store }) => {
-  const { messagesPage } = store.getState();
-
+const Messages = ({ messagesPage, onSendMessageClick, onNewMassageChange }) => {
   let newMessageBody = messagesPage.newMessageBody;
-  const onSendMessageClick = () => {
-    if (newMessageBody !== '')
-    store.dispatch(sendMessageCreator());
+  const onSendMessage = () => {
+    if(newMessageBody !== '')
+    onSendMessageClick();
   };
-  const onNewMassageChange = (e) => {
+  const onNewMassage = (e) => {
     let body = e.target.value;
-    store.dispatch(updateNewMessageBodyCreator(body));
+    onNewMassageChange(body);
   };
   return (
     <div>
@@ -32,15 +26,22 @@ const Messages = ({ store }) => {
         </div>
         <div className={styles.messages}>
           {messagesPage.messagesData.map((mess) => {
-            return <Message name = {mess.name}  img = {mess.img} message={mess.message} key={mess.id} />;
+            return (
+              <Message
+                name={mess.name}
+                img={mess.img}
+                message={mess.message}
+                key={mess.id}
+              />
+            );
           })}
         </div>
       </div>
       <div className={styles.sendForm}>
-        <button onClick={onSendMessageClick}>Send</button>
+        <button onClick={onSendMessage}>Send</button>
         <textarea
           value={newMessageBody}
-          onChange={onNewMassageChange}
+          onChange={onNewMassage}
           placeholder="your mess..."
         ></textarea>
       </div>

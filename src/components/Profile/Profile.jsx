@@ -1,11 +1,11 @@
 import React from "react";
 import "./../../styles/App.scss";
-import Posts from "./Posts/Posts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
+import PostsContainer from "./Posts/PostsContainer";
 
-const Profile = ({ profilePage, dispatch }) => {
-
-  const { postsData, profileData, newPostText } = profilePage;
+const Profile = ({ store }) => {
+  const {profilePage} = store.getState()
+  const {  profileData } = profilePage;
 
   return (
     <div className="profile">
@@ -14,11 +14,7 @@ const Profile = ({ profilePage, dispatch }) => {
         alt=""
       /> */}
       <ProfileInfo profileData={profileData} />
-      <Posts
-        postsData={postsData}
-        newPostText={newPostText}
-        dispatch={dispatch}
-      />
+      <PostsContainer store = {store}/>
     </div>
   );
 };
