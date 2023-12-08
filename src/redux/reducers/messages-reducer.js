@@ -1,7 +1,7 @@
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
 const SEND_MESSAGE = "SEND-MESSAGE";
 
-let initialState =  {
+let initialState = {
   dialogsData: [
     {
       id: 1,
@@ -28,55 +28,69 @@ let initialState =  {
     {
       id: 1,
       img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-      name: 'Dante',
+      name: "Dante",
       message: "mess 1",
     },
     {
       id: 2,
       img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-      name: 'Dante',
+      name: "Dante",
       message: "mess 2",
     },
     {
       id: 3,
       img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-      name: 'Dante',
+      name: "Dante",
       message: "mess 3",
     },
     {
       id: 4,
       img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-      name: 'Dante',
+      name: "Dante",
       message: "mess 4",
     },
     {
       id: 5,
       img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-      name: 'Dante',
+      name: "Dante",
       message: "mess 5",
     },
   ],
-  newMessageBody: ''
-}
+  newMessageBody: "",
+};
 
 const messagesReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_NEW_MESSAGE_BODY:
-      state.newMessageBody = action.body;
-      return state;
-    case SEND_MESSAGE:
+      return {
+        ...state,
+        newMessageBody: action.body,
+      };
+    case SEND_MESSAGE: {
       let body = state.newMessageBody;
-      state.newMessageBody = "";
-      state.messagesData.push({ id: 6,img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg", name: "Dante", message: body });
-      return state;
+      return {
+        ...state,
+        newMessageBody: "",
+        messagesData: [
+          ...state.messagesData,
+          {
+            id: 6,
+            img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
+            name: "Dante",
+            message: body,
+          },
+        ],
+      };
+    }
     default:
       return state;
   }
 };
 
-
-export const sendMessageCreator =()=> ({type: SEND_MESSAGE})
-export const updateNewMessageBodyCreator =(body)=>
-   ({type:UPDATE_NEW_MESSAGE_BODY, body:body}) 
+export const sendMessageCreator = () => ({ type: SEND_MESSAGE });
+export const updateNewMessageBodyCreator = (body) => ({
+  type: UPDATE_NEW_MESSAGE_BODY,
+  body: body,
+});
 
 export default messagesReducer;

@@ -8,6 +8,7 @@ import Settings from "./components/Settings/Settings";
 import FriendsContainer from "./components/Friends/FriendsContainer";
 import NewsContainer from "./components/News/NewsContainer";
 import MusicContainer from "./components/Music/MusicContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 function App() {
   // const { friendsPage, newsPage } = store.getState()
@@ -18,6 +19,7 @@ function App() {
       <Sidebar />
       <div className="content-wrapper">
         <Routes>
+          <Route path="/users" element={<UsersContainer />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="/messages" element={<MessagesContainer />} />
           <Route path="/news" element={<NewsContainer />} />

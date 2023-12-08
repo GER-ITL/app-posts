@@ -6,7 +6,6 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
-let reranderEntireTree = () => {
   root.render(
     <BrowserRouter>
       <Provider store={store}>
@@ -16,7 +15,4 @@ let reranderEntireTree = () => {
       </Provider>
     </BrowserRouter>
   );
-};
 
-reranderEntireTree(store.getState());
-store.subscribe(reranderEntireTree);

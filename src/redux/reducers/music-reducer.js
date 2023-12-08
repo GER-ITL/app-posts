@@ -25,17 +25,22 @@ let initialState = {
 const musicReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_NEW_MUSIC_BODY:
-      state.newIteMusicBody = action.body;
-      return state;
-    case SEARCH_MUCIS:
+      return { ...state, newIteMusicBody: action.body };
+    case SEARCH_MUCIS: {
       let body = state.newIteMusicBody;
-      state.newIteMusicBody = "";
-      state.musicData.push({
-        id: 4,
-        label: body,
-        time: "01:47",
-      });
-      return state;
+      return {
+        ...state,
+        musicData: [
+          ...state.musicData,
+          {
+            id: 4,
+            label: body,
+            time: "01:47",
+          },
+        ],
+        newIteMusicBody: "",
+      };
+    }
     default:
       return state;
   }
