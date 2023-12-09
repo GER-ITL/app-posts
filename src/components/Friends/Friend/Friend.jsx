@@ -6,7 +6,7 @@ const Friend = ({img, name, status}) => {
     <div className={classes.liItem}>
       <img src={img} alt="AVA" />
       <li className={classes.listFriends}>
-        {name} <span>{status}</span>
+        {name} <span>{status === true ? 'online' : 'offline'}</span>
       </li>
     </div>
   );

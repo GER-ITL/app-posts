@@ -6,6 +6,11 @@ const Sidebar = () => {
   return (
     <div className="sidebar">
       <div className="item">
+        <NavLink to="/users" className={setActive}>
+          Find Users
+        </NavLink>
+      </div>
+      <div className="item">
         <NavLink to="/profile" className={setActive}>
           Profile
         </NavLink>
@@ -13,11 +18,6 @@ const Sidebar = () => {
       <div className="item">
         <NavLink to="/friends" className={setActive}>
           Friends
-        </NavLink>
-      </div>
-      <div className="item">
-        <NavLink to="/users" className={setActive}>
-          Find Users
         </NavLink>
       </div>
       <div className="item">

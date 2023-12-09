@@ -2,18 +2,104 @@
  margin: 0;
  padding: 0;
 }
-
+.userPageItem{
+    display: flex;
+ 
+}
 .usersBlock{
     min-height: 100px;
     max-width: 700px;
     margin: 0 auto;
 
 }
+.userProfile{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
 .user{
+    display: flex;
+    justify-content: space-between;
     border: 1px solid #000;
     min-height: 100px;
     border-radius: 10px;
     margin-top: 20px;
     width: 100%;
-    padding: 20px;
+    height: 50%;
+    padding: 5px 20px;
+}
+.userInfo{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.userInfo2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 10px;
+}
+.country{
+    padding-bottom: 5px;
+}
+.img{
+    width: 100px;
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+@mixin btn {
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.5s all;
+    padding: 5px 20px;
+    color: #e6e6fa;
+
+
+}
+.btnFollow{
+    background: rgba(0, 128, 0, 0.633);
+    @include btn()
+}
+.btnUnfollow{
+    background: rgba(128, 0, 0, 0.593);
+    @include btn()
+
+}
+.btnFollow:hover{
+    
+    box-shadow: 0px 0px 10px rgba(2, 194, 2, 0.633);
+    font-size: 15px;
+
+}
+.btnUnfollow:hover{
+    
+    box-shadow: 0px 0px 10px rgba(194, 2, 2, 0.633);
+    font-size: 15px;
+
+}
+.showmoreBtn{
+    padding: 10px 20px;
+    color: #e6e6fa;
+    background: rgba(0, 128, 0, 0.633);
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    transition: 0.5s all;
+
+}
+.showmoreBtn:hover{
+    box-shadow: 0px 0px 10px #000;
+
+}
+.showmoreBtnBlock{
+    width: 100%;
+    display: flex;
+    justify-content: center
+    
 }
