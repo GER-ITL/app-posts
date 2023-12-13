@@ -1,60 +1,21 @@
 import React from "react";
 import styles from "./Users.module.scss";
 import User from "./User";
+import axios from "axios";
 const Users = ({ usersPage, followHandler, unfollowHandler, setUsersHandler }) => {
   const { users } = usersPage;
+  let getUsers  = () => {
   if (users.length === 0){
-    setUsersHandler([
-      {
-          id: 1,
-          fullname:'Dante R.',
-          followed: true,
-          img: "https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676296367166243426.png",
-          status: 'Im a boss',
-          location:{
-              citi:'Moscow',
-              country: 'Russia'
-          }
-      },
-      {
-          id: 2,
-          fullname:'Alex N.',
-          followed: false,
-          img: "https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676296367166243426.png",
-          status: 'Im a boss',
-          location:{
-              citi:'Dybna',
-              country: 'Russia'
-          }
-      },
-      {
-          id: 3,
-          fullname:'Dmitriy S.',
-          followed: true,
-          img: "https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676296367166243426.png",
-          status: 'Im a boss',
-          location:{
-              citi:'Ximki',
-              country: 'Russia'
-          }
-      },
-      {
-          id: 4,
-          fullname:'Kate',
-          followed: false,
-          img: "https://cs14.pikabu.ru/post_img/big/2023/02/13/8/1676296367166243426.png",
-          status: 'Im a boss',
-          location:{
-              citi:'Tverb',
-              country: 'Russia'
-          }
-      },
-  ])
+   axios
+     .get("https://social-network.samuraijs.com/api/1.0/users")
+     .then(response => setUsersHandler(response.data.items));
+ }
   }
   
   return (
     <div className={styles.usersPage}>
       <h1>USERS WILL BE HERE</h1>
+      <button className={styles.showmoreBtn} onClick={getUsers}>Fetch users</button>
       <div className={styles.usersBlock}>
         {users.map((user) => {
           return (
@@ -68,7 +29,7 @@ const Users = ({ usersPage, followHandler, unfollowHandler, setUsersHandler }) =
         })}
       </div>
       <div className={styles.showmoreBtnBlock}>
-        <button className={styles.showmoreBtn}>Show More</button>
+       {users.length !== 0 ?<button className={styles.showmoreBtn}>Show More</button> : '' } 
       </div>
     </div>
   );
