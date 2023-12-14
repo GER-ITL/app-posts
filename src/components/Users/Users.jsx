@@ -1,21 +1,26 @@
 import React from "react";
 import styles from "./Users.module.scss";
 import User from "./User";
-import axios from "axios";
-const Users = ({ usersPage, followHandler, unfollowHandler, setUsersHandler }) => {
+const Users = ({
+  usersPage,
+  followHandler,
+  unfollowHandler,
+  currentPage,
+  totalUsersCount,
+  pageSize,
+  onPageChanged,
+}) => {
   const { users } = usersPage;
-  let getUsers  = () => {
-  if (users.length === 0){
-   axios
-     .get("https://social-network.samuraijs.com/api/1.0/users")
-     .then(response => setUsersHandler(response.data.items));
- }
+
+  let pagesCount = Math.ceil(totalUsersCount / pageSize);
+  let pages = [];
+  for (let i = 1; i <= pagesCount; i++) {
+    pages.push(i);
   }
-  
+
   return (
     <div className={styles.usersPage}>
-      <h1>USERS WILL BE HERE</h1>
-      <button className={styles.showmoreBtn} onClick={getUsers}>Fetch users</button>
+      {/* <button className={styles.showmoreBtn} onClick={this.getUsers}>Fetch users</button> */}
       <div className={styles.usersBlock}>
         {users.map((user) => {
           return (
@@ -28,8 +33,30 @@ const Users = ({ usersPage, followHandler, unfollowHandler, setUsersHandler }) =
           );
         })}
       </div>
+      <div className={styles.spanPage}>
+        {pages.map((page) => {
+          return (
+            <span
+              onClick={(e) => {
+                onPageChanged(page);
+              }}
+              className={
+                currentPage === page
+                  ? styles.selectedPage
+                  : styles.unSelectedPage
+              }
+            >
+              {page}
+            </span>
+          );
+        })}
+      </div>
       <div className={styles.showmoreBtnBlock}>
-       {users.length !== 0 ?<button className={styles.showmoreBtn}>Show More</button> : '' } 
+        {users.length !== 0 ? (
+          <button  className={styles.showmoreBtn}>Show More</button>
+        ) : (
+          ""
+        )}
       </div>
     </div>
   );
