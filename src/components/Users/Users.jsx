@@ -36,7 +36,8 @@ const Users = ({
       <div className={styles.spanPage}>
         {pages.map((page) => {
           return (
-            <span
+            <span 
+              key={page}
               onClick={(e) => {
                 onPageChanged(page);
               }}

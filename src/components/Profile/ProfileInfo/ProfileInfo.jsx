@@ -1,16 +1,26 @@
 import React from "react";
 import "./../../../styles/App.scss";
-const ProfileInfo = ({profileData}) => {
+import Preloader from '../../common/Preloader'
+const ProfileInfo = ({ profile}) => {
+  if (!profile){
+    return <Preloader/>
+  }
   return (
     <div className="profile_info">
       <div>
-        <img src={profileData[0].img} alt="AVA" />
+        <img src={profile.photos.large } alt="AVA" />
       </div>
       <div className="description">
-        <h2>{profileData[0].name}</h2>
-        <div>Data of Birth: {profileData[0].dataBirth}</div>
-        <div>Citi: {profileData[0].citi}</div>
-        <div>Education: {profileData[0].education}</div>
+        <h2>{profile.fullName}</h2>
+        <div>About me: {profile.aboutMe}</div>
+        <div>Job Status: {profile.lookingForAJobDescription}</div>
+        <div>Contacts: </div>
+        <div> {profile.contacts.github}</div>
+        <div> {profile.contacts.vk}</div>
+        <div> {profile.contacts.instagram}</div>
+        <div> {profile.contacts.twitter}</div>
+        <div> {profile.contacts.youtube}</div>
+
       </div>
     </div>
   );

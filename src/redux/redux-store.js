@@ -6,6 +6,7 @@ import friendsReducer from "./reducers/friends-reducer"
 import newsReducer from "./reducers/news-reducer"
 import musicReducer from "./reducers/music-reducer"
 import usersReducer from "./reducers/users-reducer"
+import authReducer from "./reducers/auth-reducer"
 
 
 let reducers = combineReducers({
@@ -16,6 +17,7 @@ let reducers = combineReducers({
     newsPage:newsReducer,
     musicPage: musicReducer,
     sidebar: sidebarReducer,
+    auth: authReducer,
 })
 
 let store = createStore(reducers)
