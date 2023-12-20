@@ -2,44 +2,39 @@ import { connect } from "react-redux";
 import {
   follow,
   setCurrentPages,
-  setTotalUsersCount,
-  setUsers,
   unfollow,
-  setToogleIsFetching,
+  setToogleIsFollowingProgress,
+  getUsersThunkCreator,
+  setPagesSize,
 } from "../../redux/reducers/users-reducer";
 import React from "react";
-import axios from "axios";
 import Users from "./Users";
 import Preloader from "../common/Preloader";
+import { AuthRedirect } from "../../hoc/AuthRedirect";
 
 class UsersClassAPI extends React.Component {
   componentDidMount() {
-    this.props.setToogleIsFetching(true);
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}` ,
-        {withCredentials:true}
-      )
-      .then((response) => {
-        this.props.setToogleIsFetching(false);
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
-      });
+    this.props.getUsersThunkCreator(this.props.currentPage, this.props.pageSize)
+    // this.props.setToogleIsFetching(true);
+
+    // UsersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
+    //   this.props.setToogleIsFetching(false);
+    //   this.props.setUsers(data.items);
+    //   this.props.setTotalUsersCount(data.totalCount);
+    // });
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.setCurrentPages(pageNumber);
-    this.props.setToogleIsFetching(true);
+    this.props.getUsersThunkCreator(pageNumber, this.props.pageSize)
 
-    axios
-      .get(
-        `https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`,
-        {withCredentials:true}
-      )
-      .then((response) => {
-        this.props.setUsers(response.data.items);
-        this.props.setToogleIsFetching(false);
-      });
+
+    // this.props.setCurrentPages(pageNumber);
+    // this.props.setToogleIsFetching(true);
+
+    // UsersAPI.getUsers(pageNumber, this.props.pageSize).then((data) => {
+    //   this.props.setUsers(data.items);
+    //   this.props.setToogleIsFetching(false);
+    // });
   };
 
   render() {
@@ -57,6 +52,8 @@ class UsersClassAPI extends React.Component {
             totalUsersCount={this.props.totalUsersCount}
             pageSize={this.props.pageSize}
             onPageChanged={this.onPageChanged}
+            followingInProgress={this.props.followingInProgress}
+            setPagesSize ={this.props.setPagesSize}
           />
         )}
       </>
@@ -72,6 +69,7 @@ let mapStateToProps = (state) => {
     currentPage: state.usersPage.currentPage,
     usersPage: state.usersPage,
     isFetching: state.usersPage.isFetching,
+    followingInProgress: state.usersPage.followingInProgress
   };
 };
 // let mapDispatchToProps = (dispatch) => {
@@ -96,10 +94,13 @@ let mapStateToProps = (state) => {
 //     },
 //   };
 // };
-
-const UsersContainer = connect(
-  mapStateToProps,
- {follow, unfollow, setUsers, setCurrentPages, setTotalUsersCount, setToogleIsFetching,}
-)(UsersClassAPI);
+const UsersContainer = AuthRedirect( connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setCurrentPages,
+  setToogleIsFollowingProgress,
+  setPagesSize,
+  getUsersThunkCreator
+})(UsersClassAPI))
 
 export default UsersContainer;

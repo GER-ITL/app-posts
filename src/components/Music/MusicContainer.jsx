@@ -4,6 +4,7 @@ import {
 } from "../../redux/reducers/music-reducer";
 import { connect } from "react-redux";
 import Music from "./Music";
+import { AuthRedirect } from "../../hoc/AuthRedirect";
 
 let mapStateToProps = (state) => {
   return {
@@ -21,6 +22,6 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-const MusicContainer = connect(mapStateToProps, mapDispatchToProps)(Music);
+const MusicContainer = AuthRedirect( connect(mapStateToProps, mapDispatchToProps)(Music));
 
 export default MusicContainer;

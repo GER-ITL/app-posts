@@ -1,3 +1,4 @@
+import { UsersAPI } from "../../api/api";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const REMOVE_POST = "REMOVE-POST";
@@ -18,15 +19,7 @@ let initialState = {
       count: 20,
     },
   ],
-  profileData: [
-    {
-      name: "Dante R.",
-      dataBirth: "8 january",
-      citi: "Moscow",
-      education: "BSU'11",
-      img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-    },
-  ],
+  profileData: [],
   newPostText: "",
   profile: null,
 };
@@ -87,5 +80,14 @@ export const setUserProfile = (profile) => {
     profile
   };
 };
+
+export const profileThunk = (userId) => {
+  return (dispatch) =>{
+      UsersAPI.getProfile(userId)
+      .then((data) => {
+        dispatch(setUserProfile(data))
+      });
+  }
+}
 
 export default profileReducer;

@@ -2,8 +2,8 @@ import React from "react";
 import styles from "./Messages.module.scss";
 import Message from "./Message/Message";
 import Dialogs from "./Dialogs/Dialogs";
-
-const Messages = ({ messagesPage, onSendMessageClick, onNewMassageChange }) => {
+import {Navigate} from "react-router-dom";
+const Messages = ({ messagesPage, onSendMessageClick, onNewMassageChange, isAuth }) => {
   let newMessageBody = messagesPage.newMessageBody;
   const onSendMessage = () => {
     if(newMessageBody !== '')
@@ -13,6 +13,7 @@ const Messages = ({ messagesPage, onSendMessageClick, onNewMassageChange }) => {
     let body = e.target.value;
     onNewMassageChange(body);
   };
+  if (!isAuth) return <Navigate to={'/login'}/> 
   return (
     <div>
       <h1>Messages</h1>

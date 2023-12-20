@@ -9,6 +9,9 @@ const Users = ({
   totalUsersCount,
   pageSize,
   onPageChanged,
+  setToogleIsFollowingProgress,
+  followingInProgress,
+  setPagesSize,
 }) => {
   const { users } = usersPage;
 
@@ -17,7 +20,6 @@ const Users = ({
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-
   return (
     <div className={styles.usersPage}>
       {/* <button className={styles.showmoreBtn} onClick={this.getUsers}>Fetch users</button> */}
@@ -29,6 +31,9 @@ const Users = ({
               user={user}
               followHandler={followHandler}
               unfollowHandler={unfollowHandler}
+              setToogleIsFollowingProgress = {setToogleIsFollowingProgress}
+              followingInProgress ={followingInProgress}
+
             />
           );
         })}
@@ -54,7 +59,9 @@ const Users = ({
       </div>
       <div className={styles.showmoreBtnBlock}>
         {users.length !== 0 ? (
-          <button  className={styles.showmoreBtn}>Show More</button>
+          <button onClick={()=>{  
+            setPagesSize(5)
+           } } className={styles.showmoreBtn}>setPageSize(5)</button>
         ) : (
           ""
         )}

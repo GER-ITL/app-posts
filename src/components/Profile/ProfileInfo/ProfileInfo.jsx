@@ -1,14 +1,19 @@
 import React from "react";
 import "./../../../styles/App.scss";
-import Preloader from '../../common/Preloader'
-const ProfileInfo = ({ profile}) => {
-  if (!profile){
-    return <Preloader/>
+import Preloader from "../../common/Preloader";
+import photo from "../../../assets/img/user.jpg";
+const ProfileInfo = ({ profile }) => {
+  if (!profile) {
+    return <Preloader />;
   }
   return (
     <div className="profile_info">
       <div>
-        <img src={profile.photos.large } alt="AVA" />
+        {profile.photos.large !== null ? (
+          <img src={profile.photos.large} alt="ava" />
+        ) : (
+          <img src={photo} alt="ava" />
+        )}
       </div>
       <div className="description">
         <h2>{profile.fullName}</h2>
@@ -20,7 +25,6 @@ const ProfileInfo = ({ profile}) => {
         <div> {profile.contacts.instagram}</div>
         <div> {profile.contacts.twitter}</div>
         <div> {profile.contacts.youtube}</div>
-
       </div>
     </div>
   );

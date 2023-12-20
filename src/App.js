@@ -9,7 +9,7 @@ import MusicContainer from "./components/Music/MusicContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/ui/HeaderContainer";
-
+import LoginPage from "./components/Login/Login";
 function App() {
   // const { friendsPage, newsPage } = store.getState()
 
@@ -20,6 +20,7 @@ function App() {
       <div className="content-wrapper">
         <Routes>
           <Route path="/users" element={<UsersContainer />} />
+          <Route path="/login" element={<LoginPage />} />
           <Route path="/profile/:userId?" element={<ProfileContainer />} />
           <Route path="/messages" element={<MessagesContainer />} />
           <Route path="/news" element={<NewsContainer />} />

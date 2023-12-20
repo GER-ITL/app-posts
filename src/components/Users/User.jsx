@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "./Users.module.scss";
 import userPhoto from "../../assets/img/user.jpg";
-import axios from "axios";
 import { NavLink } from "react-router-dom";
-const User = ({ user, followHandler, unfollowHandler }) => {
+const User = ({ user, followHandler, unfollowHandler, followingInProgress }) => {
   return (
     <div className={styles.userPageItem}>
       <div className={styles.userProfile}>
@@ -15,47 +14,19 @@ const User = ({ user, followHandler, unfollowHandler }) => {
           />
         </NavLink>
         {user.followed ? (
-          <button
+          <button disabled = {followingInProgress.some(id =>id === user.id)}
             onClick={() => {
-              axios
-                .delete(
-                  `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                  {
-                    withCredentials: true,
-                    headers: {
-                      "API-KEY": "02aa94db-c686-4d1b-a6f4-9225abebc990",
-                    },
-                  }
-                )
-                .then((response) => {
-                  if (response.data.resultCode === 0) {
-                    unfollowHandler(user.id);
-                  }
-                });
+              unfollowHandler(user.id)
+
             }}
             className={styles.btnUnfollow}
           >
             Unfollow
           </button>
         ) : (
-          <button
+          <button disabled = {followingInProgress.some(id =>id === user.id)}
             onClick={() => {
-              axios
-                .post(
-                  `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                  {},
-                  {
-                    withCredentials: true,
-                    headers: {
-                      "API-KEY": "02aa94db-c686-4d1b-a6f4-9225abebc990",
-                    },
-                  }
-                )
-                .then((response) => {
-                  if (response.data.resultCode === 0) {
-                    followHandler(user.id);
-                  }
-                });
+             followHandler(user.id)
             }}
             className={styles.btnFollow}
           >
