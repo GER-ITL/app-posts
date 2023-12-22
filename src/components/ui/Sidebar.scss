@@ -37,3 +37,29 @@
     
 }
 
+.itemSizeBlock {
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    border-radius: 5px;
+    display: none;
+    width: 300px;
+}
+.navLinkSmall{
+   text-decoration: none;
+   color: #28282b;
+}
+@media(max-width:500px){
+    .itemSizeBlock{
+        padding-inline: 10px;
+        padding-bottom: 3px;
+        padding-left: 30px;
+        border: none;
+        display: block;
+        cursor: pointer;
+        z-index: 100;   
+
+    }
+    .sidebar{display: none;}
+   
+}

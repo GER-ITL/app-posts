@@ -34,3 +34,10 @@
     align-items: flex-end;
     width: 100%;
 }
+@media(max-width:500px){
+    .label{
+        display: none;
+
+    }
+   
+}

@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import { connect } from "react-redux";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import { AuthRedirect } from "../../hoc/AuthRedirect";
+import { compose } from "redux";
 class ProfileContainer extends React.Component {
   componentDidMount() {
     let userId = this.props.router.params.userId;
@@ -22,7 +23,11 @@ class ProfileContainer extends React.Component {
     );
   }
 }
-let AuthRedirectComponent = AuthRedirect(ProfileContainer)
+
+
+
+
+// let AuthRedirectComponent = AuthRedirect(ProfileContainer)
 
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
@@ -39,6 +44,8 @@ function withRouter(Component) {
   return ComponentWithRouterProp;
 }
 
-export default connect(mapStateToProps, { profileThunk })(
-  withRouter(AuthRedirectComponent)
-);
+export default compose(
+  connect(mapStateToProps, { profileThunk }),
+  withRouter,
+  AuthRedirect
+)(ProfileContainer)
