@@ -1,8 +1,8 @@
-import { UsersAPI } from "../../api/api";
+import { ProfileAPI, UsersAPI } from "../../api/api";
 const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 const REMOVE_POST = "REMOVE-POST";
-const SET_USER_PROFILE = "SET-USER-PROFILE"
+const SET_USER_PROFILE = "SET-USER-PROFILE";
+const SET_STATUS = "SET-STATUS";
 
 let initialState = {
   postsData: [
@@ -20,28 +20,23 @@ let initialState = {
     },
   ],
   profileData: [],
-  newPostText: "",
   profile: null,
+  status: "",
 };
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST: {
+      let body = action.newMessageBody
       let newPost = {
         id: 6,
         img: "https://img.freepik.com/premium-vector/anonymous-hooded-avatar-hidden-user-incognito-hacker-isolated-vector-illustration_619989-1263.jpg",
-        mess: state.newPostText,
+        mess: body,
         count: 0,
       };
       let stateCopy = { ...state };
       stateCopy.postsData = [...state.postsData];
       stateCopy.postsData.push(newPost);
-      stateCopy.newPostText = "";
-      return stateCopy;
-    }
-    case UPDATE_NEW_POST_TEXT: {
-      let stateCopy = { ...state };
-      stateCopy.newPostText = action.messPost;
       return stateCopy;
     }
     case REMOVE_POST:
@@ -49,26 +44,22 @@ const profileReducer = (state = initialState, action) => {
       stateCopy.postsData = [...state.postsData];
       stateCopy.postsData.pop();
       return stateCopy;
-      case SET_USER_PROFILE:
-         return {...state,
-          profile: action.profile
-          }
+    case SET_USER_PROFILE:
+      return { ...state, profile: action.profile };
+    case SET_STATUS:
+      return { ...state, status: action.status };
     default:
       return state;
   }
 };
 
-export const addPostActionCreator = () => {
+export const addPostActionCreator = (newMessageBody) => {
   return {
     type: ADD_POST,
+    newMessageBody
   };
 };
-export const updateNewPostTextActionCreator = (text) => {
-  return {
-    type: UPDATE_NEW_POST_TEXT,
-    messPost: text,
-  };
-};
+
 export const removePostActionCreator = () => {
   return {
     type: REMOVE_POST,
@@ -77,17 +68,36 @@ export const removePostActionCreator = () => {
 export const setUserProfile = (profile) => {
   return {
     type: SET_USER_PROFILE,
-    profile
+    profile,
   };
 };
-
+export const setStatus = (status) => {
+  return {
+    type: SET_STATUS,
+    status,
+  };
+};
 export const profileThunk = (userId) => {
-  return (dispatch) =>{
-      UsersAPI.getProfile(userId)
-      .then((data) => {
-        dispatch(setUserProfile(data))
-      });
-  }
-}
-
+  return (dispatch) => {
+    UsersAPI.getProfile(userId).then((data) => {
+      dispatch(setUserProfile(data));
+    });
+  };
+};
+export const getStatus = (userId) => {
+  return (dispatch) => {
+    ProfileAPI.getStatus(userId).then((response) => {
+      dispatch(setStatus(response.data));
+    });
+  };
+};
+export const updateStatus = (status) => {
+  return (dispatch) => {
+    ProfileAPI.updateStatus(status).then((response) => {
+      if (response.data.resultCode === 0){
+        dispatch(setStatus(response.data.status));
+      }
+    });
+  };
+};
 export default profileReducer;

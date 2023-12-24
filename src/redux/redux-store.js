@@ -8,7 +8,7 @@ import musicReducer from "./reducers/music-reducer"
 import usersReducer from "./reducers/users-reducer"
 import authReducer from "./reducers/auth-reducer"
 import { thunk as thunkMiddleware } from "redux-thunk"
-
+import {reducer as formReducer} from 'redux-form'
 let reducers = combineReducers({
     profilePage: profileReducer,
     messagesPage:messagesReducer,
@@ -18,6 +18,7 @@ let reducers = combineReducers({
     musicPage: musicReducer,
     sidebar: sidebarReducer,
     auth: authReducer,
+    form: formReducer,
 })
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware))

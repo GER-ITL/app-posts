@@ -54,6 +54,7 @@ class UsersClassAPI extends React.Component {
             onPageChanged={this.onPageChanged}
             followingInProgress={this.props.followingInProgress}
             setPagesSize ={this.props.setPagesSize}
+            status={this.props.status}
           />
         )}
       </>
@@ -69,7 +70,8 @@ let mapStateToProps = (state) => {
     currentPage: state.usersPage.currentPage,
     usersPage: state.usersPage,
     isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress
+    followingInProgress: state.usersPage.followingInProgress,
+    status: state.profilePage.status
   };
 };
 // let mapDispatchToProps = (dispatch) => {

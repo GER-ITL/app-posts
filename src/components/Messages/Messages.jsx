@@ -2,18 +2,25 @@ import React from "react";
 import styles from "./Messages.module.scss";
 import Message from "./Message/Message";
 import Dialogs from "./Dialogs/Dialogs";
-import {Navigate} from "react-router-dom";
-const Messages = ({ messagesPage, onSendMessageClick, onNewMassageChange, isAuth }) => {
-  let newMessageBody = messagesPage.newMessageBody;
-  const onSendMessage = () => {
-    if(newMessageBody !== '')
-    onSendMessageClick();
+import { Field, reduxForm } from "redux-form";
+import { Navigate } from "react-router-dom";
+import Textarea from "../common/FormControls";
+import { maxLengthCreator, requiredField} from "../../utils/validators";
+
+
+const maxLengthCreator50 = maxLengthCreator(50)
+
+const Messages = ({
+  messagesPage,
+  onSendMessage,
+  isAuth
+
+}) => {
+  if (!isAuth) return <Navigate to={"/login"} />;
+
+  const addNewMessage = (newMessage) => {
+    onSendMessage(newMessage.newMessageBody);
   };
-  const onNewMassage = (e) => {
-    let body = e.target.value;
-    onNewMassageChange(body);
-  };
-  if (!isAuth) return <Navigate to={'/login'}/> 
   return (
     <div>
       <h1>Messages</h1>
@@ -38,16 +45,25 @@ const Messages = ({ messagesPage, onSendMessageClick, onNewMassageChange, isAuth
           })}
         </div>
       </div>
-      <div className={styles.sendForm}>
-        <button onClick={onSendMessage}>Send</button>
-        <textarea
-          value={newMessageBody}
-          onChange={onNewMassage}
-          placeholder="your mess..."
-        ></textarea>
-      </div>
+      <AddFormRedux onSubmit={addNewMessage} />
     </div>
   );
 };
 
+const AddFormMessageForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div className={styles.sendForm}>
+        <button>Send</button>
+        <Field
+          name="newMessageBody"
+          component={Textarea}
+          validate={[requiredField, maxLengthCreator50]}
+          placeholder="your mess..."
+        />
+      </div>
+    </form>
+  );
+};
+const AddFormRedux = reduxForm({ form: "messageForm" })(AddFormMessageForm);
 export default Messages;

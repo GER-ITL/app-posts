@@ -12,6 +12,7 @@ const Users = ({
   setToogleIsFollowingProgress,
   followingInProgress,
   setPagesSize,
+  status
 }) => {
   const { users } = usersPage;
 
@@ -33,7 +34,7 @@ const Users = ({
               unfollowHandler={unfollowHandler}
               setToogleIsFollowingProgress = {setToogleIsFollowingProgress}
               followingInProgress ={followingInProgress}
-
+              status = {status}
             />
           );
         })}

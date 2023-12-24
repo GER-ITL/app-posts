@@ -3,7 +3,7 @@ import "./../../../styles/App.scss";
 import Preloader from "../../common/Preloader";
 import ProfileStatus from "./ProfileStatus";
 import photo from "../../../assets/img/user.jpg";
-const ProfileInfo = ({ profile }) => {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
   if (!profile) {
     return <Preloader />;
   }
@@ -18,7 +18,7 @@ const ProfileInfo = ({ profile }) => {
       </div>
       <div className="description">
         <h2>{profile.fullName}</h2>
-          <ProfileStatus status={'Hello my friends'}/>
+          <ProfileStatus status={status} updateStatus={updateStatus}/>
         <div>About me: {profile.aboutMe}</div>
         <div>Job Status: {profile.lookingForAJobDescription}</div>
         <div>Contacts: </div>

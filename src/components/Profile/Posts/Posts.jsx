@@ -1,46 +1,27 @@
 import styles from "./Posts.module.scss";
 import Post from "./Post/Post";
 import React from "react";
-
+import { Field, reduxForm } from "redux-form";
+import { maxLengthCreator, requiredField } from "../../../utils/validators";
+import Textarea from "../../common/FormControls";
+const maxLength300 = maxLengthCreator(300)
 const Posts = ({
   postsData,
-  newPostText,
-  updateNewPostText,
   addPostHandler,
-  removePostHandler,
+  // removePostHandler,
 }) => {
-  let newPostElement = React.createRef();
-  const addPost = () => {
-    if (newPostElement.current.value !== "") {
-      addPostHandler();
-    }
-  };
-  const removePost = () => {
-    removePostHandler();
-  };
-  let onPostChangeHandler = () => {
-    let text = newPostElement.current.value;
-    updateNewPostText(text);
-  };
+
+  // const removePost = () => {
+  //   removePostHandler();
+  // };
+
+  const addNewPost = (values) => {
+    addPostHandler(values.newPostBody)
+  }
   return (
     <div>
       <h1> My Posts</h1>
-      <div className={styles.addFormBlock}>
-        <textarea
-          onChange={onPostChangeHandler}
-          value={newPostText}
-          ref={newPostElement}
-          placeholder="your news..."
-        ></textarea>
-        <div>
-          <button onClick={addPost} className={styles.sendBtn}>
-            Send
-          </button>
-          <button onClick={removePost} className={styles.removeBtn}>
-            Remove
-          </button>
-        </div>
-      </div>
+      <AddPostFormRedux onSubmit={addNewPost}/>
       <div className={styles.posts}>
         {postsData.map((post) => {
           return (
@@ -56,4 +37,29 @@ const Posts = ({
     </div>
   );
 };
+
+const AddPostForm = (props) => {
+  return(
+    <form onSubmit={props.handleSubmit}>
+    <div className={styles.addFormBlock}>
+      <Field
+        name="newPostBody"
+        component={Textarea}
+        validate={[requiredField, maxLength300]}
+        placeholder="your news..."
+      />
+      <div>
+        <button className={styles.sendBtn}>
+          Send
+        </button>
+        <button className={styles.removeBtn}>
+          Remove
+        </button>
+      </div>
+    </div>
+    </form>
+  )
+}
+
+const AddPostFormRedux = reduxForm({form: 'profileNewPostBody'})(AddPostForm)
 export default Posts;

@@ -4,7 +4,7 @@
     justify-content: flex-start;
     align-items: center;
     margin-top: 10px;
-    font-size: 30px;
+    font-size: 20px;
 }
 @mixin formBtn{
     width: 100px;
@@ -33,4 +33,11 @@
 }
 .sendBtn:hover{
     background: rgba(0, 128, 0);
+}
+.input{
+    padding: 10px;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    margin-top: 10px;
 }
