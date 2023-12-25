@@ -3,54 +3,59 @@ import axios from "axios";
 const instance = axios.create({
   withCredentials: true,
   headers: {
-    "API-KEY": "02aa94db-c686-4d1b-a6f4-9225abebc990",
+    "API-KEY": "e4bdb26b-a606-4cae-b68f-08fbdb33ec84",
   },
   baseURL: "https://social-network.samuraijs.com/api/1.0/",
 });
 
 export const UsersAPI = {
-  getUsers  (currentPage = 1, pageSize = 5) {
+  getUsers(currentPage = 1, pageSize = 5) {
     return instance
       .get(`users?page=${currentPage}&count=${pageSize}`)
       .then((response) => {
         return response.data;
       });
   },
-  deleteUsers  (id)  {
+  deleteUsers(id) {
     return instance.delete(`follow/${id}`).then((response) => {
       return response.data;
     });
   },
-   postUsers (id) {
+  postUsers(id) {
     return instance.post(`follow/${id}`).then((response) => {
       return response.data;
     });
   },
-  getProfile (userId)  {
-    console.warn('Obsolete method. Please ProfileAPI object')
-    return ProfileAPI.getProfile(userId)
+  getProfile(userId) {
+    console.warn("Obsolete method. Please ProfileAPI object");
+    return ProfileAPI.getProfile(userId);
   },
-}
+};
 
-export const AuthAPI={
-  me (){
-      return instance.get(`auth/me`).then((response) => {
-        return response.data;
-      });
-  }
-
-}
+export const AuthAPI = {
+  me() {
+    return instance.get(`auth/me`).then((data) => {
+      return data;
+    });
+  },
+  login(email, password, rememberMe = false) {
+    return instance.post(`auth/login`, { email, password, rememberMe });
+  },
+  logout() {
+    return instance.delete(`auth/login`);
+  },
+};
 
 export const ProfileAPI = {
-  getProfile (userId)  {
+  getProfile(userId) {
     return instance.get(`profile/${userId}`).then((response) => {
       return response.data;
     });
   },
-  getStatus(userId){
-    return instance.get('profile/status/' + userId)
+  getStatus(userId) {
+    return instance.get("profile/status/" + userId);
   },
-  updateStatus(status){
-    return instance.put('profile/status', {status:status})
-  }
-}
+  updateStatus(status) {
+    return instance.put("profile/status", { status: status });
+  },
+};
