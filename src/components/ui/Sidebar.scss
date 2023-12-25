@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 @mixin block-item{
     border-radius: 5px;
@@ -19,18 +21,19 @@
         background: transparent;
         text-decoration: none;
         text-align: center;
-        color: #28282b;
-        border: 1px solid #28282b;
         border-radius: 5px;
         outline: none;
+        color: #28282b;
         margin: 10px 0;
-        padding: 10px;
-        font-family: 'Montserrat', sans-serif;
+        padding:  10px;
+        font-family: 'Josefin Sans', sans-serif;
+        transition: 0.5s all;
 
         &.activeLink{
-            color: rgb(0, 115, 255);
-            background: #d3d3f3;
-            border: 1px solid rgb(0, 115, 255);
+            color: #7e7ee1;;
+            background: #ebebfa;
+            box-shadow: inset 0 0 10px #7e7ee1;
+            font-size: large;
         }
 
     }
@@ -44,12 +47,13 @@
     border-radius: 5px;
     display: none;
     width: 300px;
+    
 }
 .navLinkSmall{
    text-decoration: none;
    color: #28282b;
 }
-@media(max-width:500px){
+@media(max-width:640px){
     .itemSizeBlock{
         padding-inline: 10px;
         padding-bottom: 3px;
@@ -60,6 +64,5 @@
         z-index: 100;   
 
     }
-    .sidebar{display: none;}
    
 }

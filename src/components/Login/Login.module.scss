@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
 .login {
     display: flex;
     flex-direction: column;
@@ -40,4 +42,6 @@
     outline: none;
     border: none;
     margin-top: 10px;
+    font-family: 'Josefin Sans', sans-serif;
+
 }
