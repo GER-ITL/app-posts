@@ -6,6 +6,7 @@ import { requiredField } from "../../utils/validators";
 import { connect } from "react-redux";
 import { login } from "../../redux/reducers/auth-reducer";
 import { Navigate } from "react-router-dom";
+import s from '../common/FormControls.module.scss'
 const Login = (props) => {
   const onSubmit = (formData) => {
     const {email, password, rememberMe} = formData
@@ -22,7 +23,7 @@ const Login = (props) => {
   );
 };
 
-const LoginForm = ({ handleSubmit }) => {
+const LoginForm = ({ handleSubmit, error }) => {
   return (
     <form onSubmit={handleSubmit} action="">
       <div className={styles.login}>
@@ -55,6 +56,8 @@ const LoginForm = ({ handleSubmit }) => {
             remember me
           </div>
         </div>
+        {error ? <div className={s.formError}>{error}</div> : '' }
+
         <div>
           <button className={styles.sendBtn}>Log In</button>
           <button className={styles.removeBtn}>Cancel</button>
