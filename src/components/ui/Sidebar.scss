@@ -2,67 +2,60 @@
 @import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
-@mixin block-item{
-    border-radius: 5px;
-    padding: 10px;
-    box-sizing: border-box;
-    
+@mixin block-item {
+	border-radius: 5px;
+	padding: 10px;
+	box-sizing: border-box;
 }
 
+.sidebar {
+	@include block-item();
+	background: #e6e6fa;
+	grid-area: side;
 
-.sidebar{
-    @include block-item();
-    background: #e6e6fa;
-    grid-area: side;
+	.item a {
+		display: flex;
+		flex-direction: column;
+		background: transparent;
+		text-decoration: none;
+		text-align: center;
+		border-radius: 5px;
+		outline: none;
+		color: #28282b;
+		margin: 10px 0;
+		padding: 10px;
+		font-family: 'Josefin Sans', sans-serif;
+		transition: 0.5s all;
 
-    .item a{
-        display: flex;
-        flex-direction: column;
-        background: transparent;
-        text-decoration: none;
-        text-align: center;
-        border-radius: 5px;
-        outline: none;
-        color: #28282b;
-        margin: 10px 0;
-        padding:  10px;
-        font-family: 'Josefin Sans', sans-serif;
-        transition: 0.5s all;
-
-        &.activeLink{
-            color: #7e7ee1;;
-            background: #ebebfa;
-            box-shadow: inset 0 0 10px #7e7ee1;
-            font-size: large;
-        }
-
-    }
-    
+		&.activeLink {
+			color: #7e7ee1;
+			background: #ebebfa;
+			box-shadow: inset 0 0 10px #7e7ee1;
+			font-size: large;
+		}
+	}
 }
 
 .itemSizeBlock {
-    display: flex;
-    flex-direction: column;
-    height: fit-content;
-    border-radius: 5px;
-    display: none;
-    width: 300px;
-    
+	display: flex;
+	flex-direction: column;
+	height: fit-content;
+	border-radius: 5px;
+	display: none;
+	width: 300px;
 }
-.navLinkSmall{
-   text-decoration: none;
-   color: #28282b;
+.navLinkSmall {
+	text-decoration: none;
+	color: #28282b;
 }
-@media(max-width:640px){
-    .itemSizeBlock{
-        padding-inline: 10px;
-        padding-bottom: 3px;
-        padding-left: 30px;
-        border: none;
-        display: block;
-        cursor: pointer;
-        z-index: 100;   
-
-    }
-   
+@media (max-width: 640px) {
+	.itemSizeBlock {
+		padding-inline: 10px;
+		padding-bottom: 3px;
+		padding-left: 30px;
+		border: none;
+		display: block;
+		cursor: pointer;
+		z-index: 100;
+	}
 }

@@ -1,36 +1,58 @@
-import Sidebar from "./components/ui/Sidebar";
-import "./styles/App.scss";
-import MessagesContainer from "./components/Messages/MessagesContainer";
-import { Route, Routes } from "react-router-dom";
-import Settings from "./components/Settings/Settings";
-import FriendsContainer from "./components/Friends/FriendsContainer";
-import NewsContainer from "./components/News/NewsContainer";
-import MusicContainer from "./components/Music/MusicContainer";
-import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
-import HeaderContainer from "./components/ui/HeaderContainer";
-import LoginPage from "./components/Login/Login";
-function App() {
-  // const { friendsPage, newsPage } = store.getState()
+import React from 'react'
+import { connect } from 'react-redux'
+import { Route, Routes } from 'react-router-dom'
+import { compose } from 'redux'
+import FriendsContainer from './components/Friends/FriendsContainer'
+import LoginPage from './components/Login/Login'
+import MessagesContainer from './components/Messages/MessagesContainer'
+import MusicContainer from './components/Music/MusicContainer'
+import NewsContainer from './components/News/NewsContainer'
+import ProfileContainer from './components/Profile/ProfileContainer'
+import Settings from './components/Settings/Settings'
+import UsersContainer from './components/Users/UsersContainer'
+import Preloader from './components/common/Preloader'
+import HeaderContainer from './components/ui/HeaderContainer'
+import Sidebar from './components/ui/Sidebar'
+import { initializeApp } from './redux/reducers/app-reducer'
 
-  return (
-    <div className="content">
-      <HeaderContainer />
-      <Sidebar />
-      <div className="content-wrapper">
-        <Routes>
-          <Route path="/users" element={<UsersContainer />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/profile/:userId?" element={<ProfileContainer />} />
-          <Route path="/messages" element={<MessagesContainer />} />
-          <Route path="/news" element={<NewsContainer />} />
-          <Route path="/music" element={<MusicContainer />} />
-          <Route path="/settings" element={<Settings />} />
-          <Route path="/friends" element={<FriendsContainer />} />
-        </Routes>
-      </div>
-    </div>
-  );
+import './styles/App.scss'
+class App extends React.Component {
+	// const { friendsPage, newsPage } = store.getState()
+	componentDidMount() {
+		this.props.initializeApp()
+	}
+	render() {
+		if (!this.props.initialized) {
+			return <Preloader />
+		}
+
+		return (
+			<div className='content'>
+				<HeaderContainer />
+				<Sidebar />
+				<div className='content-wrapper'>
+					<Routes>
+						<Route path='/users' element={<UsersContainer />} />
+						<Route path='/login' element={<LoginPage />} />
+						<Route path='/profile/:userId?' element={<ProfileContainer />} />
+						<Route path='/messages' element={<MessagesContainer />} />
+						<Route path='/news' element={<NewsContainer />} />
+						<Route path='/music' element={<MusicContainer />} />
+						<Route path='/settings' element={<Settings />} />
+						<Route path='/friends' element={<FriendsContainer />} />
+					</Routes>
+				</div>
+			</div>
+		)
+	}
 }
 
-export default App;
+const mapStateToProps = state => ({
+	initialized: state.app.initialized,
+})
+
+export default compose(
+	connect(mapStateToProps, {
+		initializeApp,
+	})
+)(App)
