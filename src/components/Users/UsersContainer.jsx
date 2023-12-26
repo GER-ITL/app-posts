@@ -8,6 +8,17 @@ import {
 	setToogleIsFollowingProgress,
 	unfollow,
 } from '../../redux/reducers/users-reducer'
+import {
+	getCurrentPage,
+	getFollowingInProgress,
+	getIsAuth,
+	getIsFetching,
+	getPageSize,
+	getStatus,
+	getTotalUsersCount,
+	getUsers,
+	getUsersPage,
+} from '../../redux/selectors/users-selectors'
 import Preloader from '../common/Preloader'
 import Users from './Users'
 
@@ -53,6 +64,7 @@ class UsersClassAPI extends React.Component {
 						followingInProgress={this.props.followingInProgress}
 						setPagesSize={this.props.setPagesSize}
 						status={this.props.status}
+						isAuth={this.props.isAuth}
 					/>
 				)}
 			</>
@@ -62,16 +74,30 @@ class UsersClassAPI extends React.Component {
 
 let mapStateToProps = state => {
 	return {
-		users: state.usersPage.users,
-		pageSize: state.usersPage.pageSize,
-		totalUsersCount: state.usersPage.totalUsersCount,
-		currentPage: state.usersPage.currentPage,
-		usersPage: state.usersPage,
-		isFetching: state.usersPage.isFetching,
-		followingInProgress: state.usersPage.followingInProgress,
-		status: state.profilePage.status,
+		users: getUsers(state),
+		pageSize: getPageSize(state),
+		totalUsersCount: getTotalUsersCount(state),
+		currentPage: getCurrentPage(state),
+		usersPage: getUsersPage(state),
+		isFetching: getIsFetching(state),
+		followingInProgress: getFollowingInProgress(state),
+		status: getStatus(state),
+		isAuth: getIsAuth(state),
 	}
 }
+
+// let mapStateToProps = state => {
+// 	return {
+// 		users: state.usersPage.users,
+// 		pageSize: state.usersPage.pageSize,
+// 		totalUsersCount: state.usersPage.totalUsersCount,
+// 		currentPage: state.usersPage.currentPage,
+// 		usersPage: state.usersPage,
+// 		isFetching: state.usersPage.isFetching,
+// 		followingInProgress: state.usersPage.followingInProgress,
+// 		status: state.profilePage.status,
+// 	}
+// }
 // let mapDispatchToProps = (dispatch) => {
 //   return {
 //     followHandler: (userId) => {
