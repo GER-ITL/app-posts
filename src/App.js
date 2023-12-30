@@ -1,6 +1,6 @@
 import React from 'react'
 import { Provider, connect } from 'react-redux'
-import { Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { compose } from 'redux'
 import FriendsContainer from './components/Friends/FriendsContainer'
 import LoginPage from './components/Login/Login'
