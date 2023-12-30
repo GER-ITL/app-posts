@@ -15,8 +15,14 @@ import HeaderContainer from './components/ui/HeaderContainer'
 import Sidebar from './components/ui/Sidebar'
 import { initializeApp } from './redux/reducers/app-reducer'
 import store from './redux/redux-store'
-
 import './styles/App.scss'
+
+// const MessagesContainer = React.lazy(() => {
+// 	import('./components/Messages/MessagesContainer')
+// })
+// const ProfileContainer = React.lazy(() => {
+// 	import('./components/Profile/ProfileContainer')
+// })
 class App extends React.Component {
 	// const { friendsPage, newsPage } = store.getState()
 	componentDidMount() {

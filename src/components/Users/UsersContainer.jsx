@@ -58,7 +58,7 @@ class UsersClassAPI extends React.Component {
 						followHandler={this.props.follow}
 						unfollowHandler={this.props.unfollow}
 						currentPage={this.props.currentPage}
-						totalUsersCount={this.props.totalUsersCount}
+						totalItemsCount={this.props.totalItemsCount}
 						pageSize={this.props.pageSize}
 						onPageChanged={this.onPageChanged}
 						followingInProgress={this.props.followingInProgress}
@@ -77,7 +77,7 @@ let mapStateToProps = state => {
 		// users: getUsers(state),
 		users: getUsers(state),
 		pageSize: getPageSize(state),
-		totalUsersCount: getTotalUsersCount(state),
+		totalItemsCount: getTotalUsersCount(state),
 		currentPage: getCurrentPage(state),
 		usersPage: getUsersPage(state),
 		isFetching: getIsFetching(state),

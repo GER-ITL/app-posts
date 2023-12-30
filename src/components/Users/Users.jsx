@@ -1,4 +1,5 @@
 import React from 'react'
+import Paginator from '../ui/Paginator'
 import User from './User'
 import styles from './Users.module.scss'
 const Users = ({
@@ -6,7 +7,7 @@ const Users = ({
 	followHandler,
 	unfollowHandler,
 	currentPage,
-	totalUsersCount,
+	totalItemsCount,
 	pageSize,
 	onPageChanged,
 	setToogleIsFollowingProgress,
@@ -17,11 +18,6 @@ const Users = ({
 }) => {
 	const { users } = usersPage
 
-	let pagesCount = Math.ceil(totalUsersCount / pageSize)
-	let pages = []
-	for (let i = 1; i <= pagesCount; i++) {
-		pages.push(i)
-	}
 	return (
 		<div className={styles.usersPage}>
 			{/* <button className={styles.showmoreBtn} onClick={this.getUsers}>Fetch users</button> */}
@@ -41,25 +37,12 @@ const Users = ({
 					)
 				})}
 			</div>
-			<div className={styles.spanPage}>
-				{pages.map(page => {
-					return (
-						<span
-							key={page}
-							onClick={e => {
-								onPageChanged(page)
-							}}
-							className={
-								currentPage === page
-									? styles.selectedPage
-									: styles.unSelectedPage
-							}
-						>
-							{page}
-						</span>
-					)
-				})}
-			</div>
+			<Paginator
+				currentPage={currentPage}
+				totalItemsCount={totalItemsCount}
+				pageSize={pageSize}
+				onPageChanged={onPageChanged}
+			/>
 			<div className={styles.showmoreBtnBlock}>
 				{users.length !== 0 ? (
 					<button
