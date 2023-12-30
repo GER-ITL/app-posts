@@ -1,6 +1,6 @@
 import React from 'react'
-import { connect } from 'react-redux'
-import { Route, Routes } from 'react-router-dom'
+import { Provider, connect } from 'react-redux'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { compose } from 'redux'
 import FriendsContainer from './components/Friends/FriendsContainer'
 import LoginPage from './components/Login/Login'
@@ -14,6 +14,7 @@ import Preloader from './components/common/Preloader'
 import HeaderContainer from './components/ui/HeaderContainer'
 import Sidebar from './components/ui/Sidebar'
 import { initializeApp } from './redux/reducers/app-reducer'
+import store from './redux/redux-store'
 
 import './styles/App.scss'
 class App extends React.Component {
@@ -51,8 +52,19 @@ const mapStateToProps = state => ({
 	initialized: state.app.initialized,
 })
 
-export default compose(
+const AppContainer = compose(
 	connect(mapStateToProps, {
 		initializeApp,
 	})
 )(App)
+const AppMain = () => {
+	return (
+		<BrowserRouter>
+			<Provider store={store}>
+				<AppContainer />
+			</Provider>
+		</BrowserRouter>
+	)
+}
+
+export default AppMain
