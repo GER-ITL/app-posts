@@ -1,0 +1,81 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+}
+
+.dialog_item a {
+  text-decoration: none;
+  color: rgb(41, 41, 42);
+  border: 1px solid rgb(41, 41, 42);
+  padding: 10px;
+  display: flex;
+  text-align: center;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+
+.dialogsItems .active {
+  color: rgb(0, 115, 255);
+  background: #d3d3f3;
+  border: 1px solid rgb(0, 115, 255);
+  border-radius: 5px;
+}
+
+.message {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  min-height: 50px;
+  margin-top: 10px;
+}
+
+.mess {
+  background: #282829;
+  color: #d3d3f3;
+  border-radius: 20px 20px 20px 0px;
+  padding: 5px 20px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid #282829;
+  margin: 10px;
+  border-radius: 20px;
+  padding-left: 20px;
+  padding-top: 10px;
+  overflow: auto;
+}
+
+.imgAva {
+  display: flex;
+  width: 50px;
+  margin: 10px;
+  border: 1px solid #282829;
+  border-radius: 50%;
+}
+
+.sendForm {
+  display: flex;
+  width: 100%;
+}
+.sendForm textarea {
+  width: 100%;
+  height: 40px;
+  background-color: transparent;
+  border: 1px solid #282829;
+  padding: 10px;
+  border-radius: 5px;
+}
+.sendForm button {
+  padding: 0 50px;
+  height: 40px;
+  margin-right: 10px;
+  background-color: green;
+  color: #d3d3f3;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}/*# sourceMappingURL=Messages.module.css.map */

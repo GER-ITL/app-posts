@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: rgb(41, 41, 42);
+  font-family: "Josefin Sans", "Montserrat", sans-serif;
+}
+
+.content {
+  max-width: 1250px;
+  margin: 20px auto;
+  padding: 20px;
+  display: grid;
+  grid-template-areas: "head head" "side cont";
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: 100px 1fr;
+  gap: 20px;
+}
+
+.profile_info {
+  display: flex;
+  margin: 10px;
+}
+.profile_info img {
+  height: 150px;
+  width: 150px;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(24, 24, 24, 0.768627451);
+  border-radius: 10px;
+}
+
+.description {
+  margin: 10px;
+}
+
+.content-wrapper {
+  border-radius: 5px;
+  padding: 10px;
+  box-sizing: border-box;
+  grid-area: cont;
+  background: #e6e6fa;
+}
+
+@media (max-width: 640px) {
+  .content {
+    margin: 20px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+  }
+}/*# sourceMappingURL=App.css.map */

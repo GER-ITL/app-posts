@@ -1,0 +1,12 @@
+@import url("../Login/Login.module.scss");
+.formControl {
+  width: 100%;
+}
+.formControl .error textarea, .formControl span {
+  color: red;
+}
+
+.formError {
+  padding: 5px;
+  color: red;
+}/*# sourceMappingURL=FormControls.module.css.map */

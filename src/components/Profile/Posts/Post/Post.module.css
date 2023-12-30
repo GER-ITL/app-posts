@@ -1,0 +1,38 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
+.posts {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.item {
+  font-size: 20px;
+  color: rgb(0, 79, 128);
+  display: flex;
+  margin-bottom: 10px;
+  justify-content: space-between;
+}
+.item img {
+  width: 70px;
+  height: auto;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(35, 34, 34, 0.5294117647);
+}
+.item p {
+  align-self: center;
+}
+
+.span_item {
+  align-self: center;
+}
+.span_item span {
+  padding: 5px 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+  transition: 0.25s all;
+}
+.span_item span:active {
+  background: rgba(255, 45, 45, 0.5294117647);
+  box-shadow: 0 0 20px rgba(255, 45, 45, 0.5294117647);
+}/*# sourceMappingURL=Post.module.css.map */
