@@ -6,6 +6,7 @@ import { AuthRedirect } from '../../hoc/AuthRedirect'
 import {
 	getStatus,
 	profileThunk,
+	savePhoto,
 	updateStatus,
 } from '../../redux/reducers/profile-reducer'
 import './../../styles/App.scss'
@@ -27,10 +28,12 @@ class ProfileContainer extends React.Component {
 		return (
 			<div className='profileContainer'>
 				<Profile
+					isOwner={!this.props.router.params.userId}
 					{...this.props}
 					profile={this.props.profile}
 					status={this.props.status}
 					updateStatus={this.props.updateStatus}
+					savePhoto={this.props.savePhoto}
 				/>
 			</div>
 		)
@@ -58,7 +61,12 @@ function withRouter(Component) {
 }
 
 export default compose(
-	connect(mapStateToProps, { profileThunk, getStatus, updateStatus }),
+	connect(mapStateToProps, {
+		profileThunk,
+		getStatus,
+		updateStatus,
+		savePhoto,
+	}),
 	withRouter,
 	AuthRedirect
 )(ProfileContainer)

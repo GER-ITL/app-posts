@@ -2,18 +2,32 @@ import React from 'react'
 import photo from '../../../assets/img/user.jpg'
 import Preloader from '../../common/Preloader'
 import './../../../styles/App.scss'
+import style from './ProfileInfo.module.scss'
 import ProfileStatusHook from './ProfileStatusHook'
-const ProfileInfo = ({ profile, status, updateStatus }) => {
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto }) => {
 	if (!profile) {
 		return <Preloader />
 	}
+	const onMainPhotoSelected = e => {
+		if (e.target.files.length) {
+			savePhoto(e.target.files[0])
+		}
+	}
+	// const [show, setShow] = useState(false)
 	return (
 		<div className='profile_info'>
-			<div>
+			<div className={style.avaProfile}>
 				{profile.photos.large !== null ? (
 					<img src={profile.photos.large} alt='ava' />
 				) : (
 					<img src={photo} alt='ava' />
+				)}
+				{isOwner && (
+					<div className={style.file_upload}>
+						<div>Change photo</div>
+						{/* <button>Выбрать</button> */}
+						<input type='file' onChange={onMainPhotoSelected} />
+					</div>
 				)}
 			</div>
 			<div className='description'>

@@ -11,9 +11,11 @@ const Profile = props => {
         alt=""
       /> */}
 			<ProfileInfo
+				isOwner={props.isOwner}
 				profilePage={props.profilePage}
 				profile={props.profile}
 				status={props.status}
+				savePhoto={props.savePhoto}
 				updateStatus={props.updateStatus}
 			/>
 			<PostsContainer />
