@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 .inputFile {
 	align-self: flex-start;
 	max-width: 150px;
@@ -74,4 +76,60 @@
 	font-size: 1em; /* example */
 	height: 2em; /* example */
 	line-height: 2em; /* the same as height */
+}
+
+.contacts {
+	padding-left: 20px;
+}
+.contactsEdit {
+	padding-left: 20px;
+}
+
+.formEdit {
+	display: flex;
+	justify-content: center;
+	button {
+		padding: 0 20px;
+		margin-bottom: 10px;
+		font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+		font-size: 15px;
+		background: transparent;
+		cursor: pointer;
+		border: 1px solid #1a1a1a;
+		border-radius: 0 20px;
+		outline: none;
+		transition: 0.5s all;
+	}
+	button:active {
+		background-color: #00b31b;
+	}
+
+	input,
+	textarea {
+		padding: 5px 10px;
+		background: transparent;
+		border: 1px solid #1a1a1a;
+		border-radius: 5px;
+		outline: none;
+		box-shadow: 0 0 15px #13111c6b;
+	}
+}
+.editMode {
+	border-radius: 5px;
+	outline: none;
+	border: none;
+	background: transparent;
+	cursor: pointer;
+	font-family: 'Josefin Sans', 'Montserrat', sans-serif;
+	font-size: 20px;
+	padding: 5px 25px;
+	transition: 0.5s all;
+}
+.editMode:hover {
+	box-shadow: 0 0 10px #1a1a1a;
+}
+
+.editBlock {
+	margin-top: 10px;
+	text-align: center;
 }
