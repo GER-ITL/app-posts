@@ -39,6 +39,8 @@ class App extends React.Component {
 				<Sidebar />
 				<div className='content-wrapper'>
 					<Routes>
+						<Route exact path='/' element={<UsersContainer />} />
+
 						<Route path='/users' element={<UsersContainer />} />
 						<Route path='/login' element={<LoginPage />} />
 						<Route path='/profile/:userId?' element={<ProfileContainer />} />
@@ -47,6 +49,13 @@ class App extends React.Component {
 						<Route path='/music' element={<MusicContainer />} />
 						<Route path='/settings' element={<Settings />} />
 						<Route path='/friends' element={<FriendsContainer />} />
+						<Route path='/friends' element={<FriendsContainer />} />
+						<Route
+							path='*'
+							element={() => {
+								;<div>404 NOT FOUND</div>
+							}}
+						/>
 					</Routes>
 				</div>
 			</div>

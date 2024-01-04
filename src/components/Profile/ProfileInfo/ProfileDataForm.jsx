@@ -42,6 +42,7 @@ const ProfileDataForm = ({ profile, handleSubmit, error, cancelSubmit }) => {
 					<div>
 						<b>
 							<b>Contacts:</b>
+							<div>Change Status: double click on status</div>
 						</b>
 						{Object.keys(profile.contacts).map(key => {
 							return (

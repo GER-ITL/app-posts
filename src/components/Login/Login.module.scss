@@ -1,47 +1,65 @@
 @import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
 
 .login {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    margin-top: 10px;
-    font-size: 20px;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+	margin-top: 10px;
+	font-size: 20px;
 }
-@mixin formBtn{
-    width: 100px;
-    padding: 10px 20px ;
-    margin: 5px;
-    border: none;
-    border-radius: 5px;
-    font-family: 'Montserrat', sans-serif;
-    cursor: pointer;
-    color: aliceblue
+@mixin formBtn {
+	width: 100px;
+	padding: 10px 20px;
+	margin: 5px;
+	border: none;
+	border-radius: 5px;
+	font-family: 'Montserrat', sans-serif;
+	cursor: pointer;
+	color: aliceblue;
 }
 
-.removeBtn{
-    @include formBtn();
-    background: rgba(255, 0, 0, 0.305);
-    transition: 0.5s all;
-
+.removeBtn {
+	@include formBtn();
+	background: rgba(255, 0, 0, 0.305);
+	transition: 0.5s all;
 }
-.removeBtn:hover{
-    background: rgba(255, 0, 0);
+.removeBtn:hover {
+	background: rgba(255, 0, 0);
 }
-.sendBtn{
-    @include formBtn();
-    background: rgba(0, 128, 0, 0.344);
-    transition: 0.5s all;
+.sendBtn {
+	@include formBtn();
+	background: rgba(0, 128, 0, 0.344);
+	transition: 0.5s all;
 }
-.sendBtn:hover{
-    background: rgba(0, 128, 0);
+.sendBtn:hover {
+	background: rgba(0, 128, 0);
 }
-.input{
-    padding: 10px;
-    border-radius: 10px;
-    outline: none;
-    border: none;
-    margin-top: 10px;
-    font-family: 'Josefin Sans', sans-serif;
-
+.input {
+	padding: 10px;
+	border-radius: 10px;
+	outline: none;
+	border: none;
+	margin-top: 10px;
+	font-family: 'Josefin Sans', sans-serif;
+}
+.captcha {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	img {
+		border-radius: 30px;
+		box-shadow: 0 0 10px #282828;
+	}
+	input {
+		padding: 10px;
+		border-radius: 10px;
+		outline: none;
+		border: none;
+		margin-top: 10px;
+		font-family: 'Josefin Sans', sans-serif;
+		text-align: center;
+		margin: 10px;
+	}
 }
